@@ -73,7 +73,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      background-color: #0a0a14;
+       background-color: transparent;
       display: flex;
       justify-content: center;
       padding: 0.75rem 1.5rem;
@@ -95,9 +95,11 @@
     }
 
     nav img.logo {
-      width: 5rem;
-      height: 5rem;
+      width: 150px;
+      height: 150px;
       flex-shrink: 0;
+      margin-right: 450px;
+      margin-left: -100px;
     }
 
     nav a.nav-link {
@@ -287,11 +289,15 @@
         display: none;
       }
       nav img.logo {
+        height: 100px;
+        width: 100px;
         margin: 0 auto;
+        margin-bottom: -15px;
       }
       .hamburger {
         display: flex;
-        margin-left: 190px;
+        margin-left: 220px;
+        margin-right: 20px;
       }
     }
   </style>
@@ -369,9 +375,16 @@
     </button>
    </div>
    <!-- Right side image - hidden on mobile -->
-   <div class="hidden md:block w-full md:w-1/2 mt-10 p-0 fade-in-up delay-600">
-    <img alt="Dark background with thin abstract curved lines in beige color, elegant and minimalistic" class="w-full max-w-[480px] h-auto mx-auto" height="360" src="c08fa499-7b7b-47a4-a9c8-a1a3a0e25dab-removebg-preview.png" width="480"/>
-   </div>
+   <div class="hidden md:block w-full md:w-1/2 mt-10 p-0 fade-in-up delay-600 relative z-10">
+  <img
+    alt="Dark background with thin abstract curved lines in beige color, elegant and minimalistic"
+    class="w-full max-w-[480px] h-auto mx-auto relative z-10"
+    height="360"
+    src="c08fa499-7b7b-47a4-a9c8-a1a3a0e25dab-removebg-preview.png"
+    width="480"
+  />
+</div>
+
   </div>
   <!-- Mobile menu -->
   <div aria-hidden="true" class="mobile-menu" id="mobile-menu" role="menu" tabindex="-1">
