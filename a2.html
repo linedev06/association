@@ -1,0 +1,270 @@
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>
+    Prometeus Advogados
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&amp;family=Open+Sans&amp;display=swap"
+    rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: "Open Sans", sans-serif;
+      background-color: #0a0a14;
+    }
+
+    .font-title {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 400;
+    }
+
+    /* Fade-in animation */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    /* Staggered animation delays */
+    .delay-100 {
+      animation-delay: 0.1s;
+    }
+
+    .delay-200 {
+      animation-delay: 0.2s;
+    }
+
+    .delay-300 {
+      animation-delay: 0.3s;
+    }
+
+    .delay-400 {
+      animation-delay: 0.4s;
+    }
+
+    .delay-500 {
+      animation-delay: 0.5s;
+    }
+
+    .delay-600 {
+      animation-delay: 0.6s;
+    }
+
+    .delay-700 {
+      animation-delay: 0.7s;
+    }
+
+    .container {
+      width: 100vw;
+      height: 100vh;
+      --s: 84px;
+      --c1: #1a1a1a;
+      /* very dark gray */
+      --c2: #333333;
+      /* dark gray */
+      --c3: #4d4d4d;
+      /* medium dark gray */
+
+      --_g: 0 120deg, #0000 0;
+      background: conic-gradient(from 0deg at calc(500% / 6) calc(100% / 3),
+          var(--c3) var(--_g)),
+        conic-gradient(from -120deg at calc(100% / 6) calc(100% / 3),
+          var(--c2) var(--_g)),
+        conic-gradient(from 120deg at calc(100% / 3) calc(500% / 6),
+          var(--c1) var(--_g)),
+        conic-gradient(from 120deg at calc(200% / 3) calc(500% / 6),
+          var(--c1) var(--_g)),
+        conic-gradient(from -180deg at calc(100% / 3) 50%,
+          var(--c2) 60deg,
+          var(--c1) var(--_g)),
+        conic-gradient(from 60deg at calc(200% / 3) 50%,
+          var(--c1) 60deg,
+          var(--c3) var(--_g)),
+        conic-gradient(from -60deg at 50% calc(100% / 3),
+          var(--c1) 120deg,
+          var(--c2) 0 240deg,
+          var(--c3) 0);
+      background-size: calc(var(--s) * 1.732) var(--s);
+      background-repeat: repeat;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen bg-[#0a0a14] text-white">
+  <div class="w-full flex flex-col md:flex-row p-0">
+    <!-- Lado esquerdo -->
+    <div class="w-full md:w-1/2 flex flex-col justify-start p-6 md:p-12 mb-12">
+      <nav class="flex items-center space-x-6 mb-12 mt-2 text-sm md:text-base font-semibold fade-in-up delay-100">
+        <img alt="Logo letter R in beige on dark background, stylized and modern"
+          class="w-20 h-20 md:w-28 md:h-28 flex-shrink-0" height="112" src="IMG_8732-removebg-preview.png"
+          width="112" />
+        <a class="hover:underline" href="loginPA.html">
+          HOME
+        </a>
+        <span>
+          |
+        </span>
+        <a class="hover:underline" href="#">
+          PAGE
+        </a>
+        <span>
+          |
+        </span>
+        <a class="hover:underline" href="#">
+          ABOUT
+        </a>
+      </nav>
+      <h1 class="font-title text-4xl md:text-[48px] leading-tight md:leading-[56px] mb-4 fade-in-up delay-200">
+        PROMETEUS
+        <br />
+        ADVOGADOS
+      </h1>
+      <p class="font-serif text-lg mb-6 italic fade-in-up delay-300">
+        Excelência e Inovação.
+      </p>
+      <p class="text-sm max-w-xl mb-10 leading-relaxed fade-in-up delay-400">
+        Na Prometeus Advogados, cada solução é arquitetada em sua complexidade
+        única. Nossa defesa exata antecipa riscos e edifica segurança com
+        lógica, visão e ética.
+      </p>
+      <button
+        class="w-max px-6 py-2 border border-white rounded-md text-white text-base font-normal hover:bg-white hover:text-[#0a0a14] transition-colors duration-300 fade-in-up delay-500">
+        Conheça a Prometeus
+      </button>
+    </div>
+    <!-- Lado direito (imagem ajustada) - hidden on mobile -->
+    <div class="hidden md:block w-full md:w-1/2 m-0 p-0 fade-in-up delay-600">
+      <img alt="Dark background with thin abstract curved lines in beige color, elegant and minimalistic"
+        class="w-full h-64 md:h-[720px] object-cover" height="720" src="Captura de tela 2025-07-28 012038.png"
+        width="720" />
+    </div>
+  </div>
+  <!-- Profissionais Section -->
+  <section class="max-w-7xl mx-auto px-6 md:px-12 py-16">
+    <h2 class="font-title text-3xl md:text-4xl text-white mb-12 text-center fade-in-up delay-100">
+      Nossa Equipe de Profissionais
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 fade-in-up delay-200">
+      <!-- Professional 1 -->
+      <div
+        class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
+        <img alt="Portrait of a confident male lawyer in a dark suit with crossed arms, professional office background"
+          class="w-40 h-40 rounded-full object-cover mb-6" height="200"
+          src="https://storage.googleapis.com/a1aa/image/198892c6-fd79-4d64-ac99-5a6cea0da9e7.jpg" width="200" />
+        <h3 class="font-title text-xl mb-1">
+          Dr. Rafael Silva
+        </h3>
+        <p class="text-sm italic text-gray-300 mb-3">
+          Especialista em Direito Civil
+        </p>
+        <p class="text-sm text-gray-400">
+          Com mais de 15 anos de experiência, Rafael é conhecido por sua
+          abordagem estratégica e ética impecável.
+        </p>
+      </div>
+      <!-- Professional 2 -->
+      <div
+        class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
+        <img
+          alt="Portrait of a professional female lawyer with glasses, smiling, wearing a navy blue blazer, modern law office background"
+          class="w-40 h-40 rounded-full object-cover mb-6" height="200"
+          src="https://storage.googleapis.com/a1aa/image/c5f5ee2c-465f-4fef-2af0-5fa637a9bb11.jpg" width="200" />
+        <h3 class="font-title text-xl mb-1">
+          Dra. Mariana Costa
+        </h3>
+        <p class="text-sm italic text-gray-300 mb-3">
+          Especialista em Direito Empresarial
+        </p>
+        <p class="text-sm text-gray-400">
+          Mariana traz inovação e visão moderna para a defesa dos interesses
+          empresariais de nossos clientes.
+        </p>
+      </div>
+      <!-- Professional 3 -->
+      <div
+        class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
+        <img
+          alt="Portrait of a middle-aged male lawyer with beard, wearing a gray suit and tie, confident expression, law books in background"
+          class="w-40 h-40 rounded-full object-cover mb-6" height="200"
+          src="https://storage.googleapis.com/a1aa/image/cea9f6ac-fb6c-4247-057b-5c2c09394cee.jpg" width="200" />
+        <h3 class="font-title text-xl mb-1">
+          Dr. Lucas Almeida
+        </h3>
+        <p class="text-sm italic text-gray-300 mb-3">
+          Especialista em Direito Trabalhista
+        </p>
+        <p class="text-sm text-gray-400">
+          Lucas é dedicado a garantir justiça e proteção para trabalhadores e
+          empregadores.
+        </p>
+      </div>
+      <!-- Professional 4 -->
+      <div
+        class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
+        <img
+          alt="Portrait of a young female lawyer with curly hair, wearing a white blouse and black blazer, bright office background"
+          class="w-40 h-40 rounded-full object-cover mb-6" height="200"
+          src="https://storage.googleapis.com/a1aa/image/37f964a0-a968-4f35-6636-92d615f2c465.jpg" width="200" />
+        <h3 class="font-title text-xl mb-1">
+          Dra. Ana Beatriz
+        </h3>
+        <p class="text-sm italic text-gray-300 mb-3">
+          Especialista em Direito Ambiental
+        </p>
+        <p class="text-sm text-gray-400">
+          Ana Beatriz é apaixonada por sustentabilidade e defesa do meio ambiente.
+        </p>
+      </div>
+      <!-- Professional 5 -->
+      <div
+        class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
+        <img
+          alt="Portrait of a senior male lawyer with glasses, gray hair, wearing a dark suit and tie, serious expression, law firm background"
+          class="w-40 h-40 rounded-full object-cover mb-6" height="200"
+          src="https://storage.googleapis.com/a1aa/image/4b905dcb-ce79-4414-7482-3627e4fab0ca.jpg" width="200" />
+        <h3 class="font-title text-xl mb-1">
+          Dr. Eduardo Martins
+        </h3>
+        <p class="text-sm italic text-gray-300 mb-3">
+          Especialista em Direito Penal
+        </p>
+        <p class="text-sm text-gray-400">
+          Eduardo é um defensor incansável da justiça criminal com vasta experiência.
+        </p>
+      </div>
+      <!-- Professional 6 -->
+      <div
+        class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
+        <img
+          alt="Portrait of a confident female lawyer with straight hair, wearing a red blouse and black blazer, modern office background"
+          class="w-40 h-40 rounded-full object-cover mb-6" height="200"
+          src="https://storage.googleapis.com/a1aa/image/d2fbf0e8-354f-4acc-e2be-c4cbe769b948.jpg" width="200" />
+        <h3 class="font-title text-xl mb-1">
+          Dra. Camila Ferreira
+        </h3>
+        <p class="text-sm italic text-gray-300 mb-3">
+          Especialista em Direito Tributário
+        </p>
+        <p class="text-sm text-gray-400">
+          Camila oferece soluções inteligentes para questões fiscais complexas.
+        </p>
+      </div>
+    </div>
+  </section>
+</body>
+
+</html>

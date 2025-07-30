@@ -1,0 +1,1248 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Landing Page
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: "Montserrat", sans-serif;
+    }
+
+    h1,
+    h3,
+    h4 {
+      font-weight: 400;
+      text-transform: uppercase;
+      font-family: "Montserrat", sans-serif;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fadeInUp {
+      animation: fadeInUp 1s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes pulseScale {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+      }
+    }
+
+    .pulseScale {
+      animation: pulseScale 2.5s ease-in-out infinite;
+    }
+
+    /* Hamburger styles and animation */
+    .hamburger {
+      width: 30px;
+      height: 24px;
+      position: absolute;
+      right: 1rem;
+      cursor: pointer;
+      display: block;
+      z-index: 60;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      background: transparent;
+      border: none;
+      padding: 0;
+      top: 1rem;
+      transition: right 0.3s ease;
+    }
+
+    @media (max-width: 639px) {
+      .hamburger {
+        top: calc(1rem + 14px);
+      }
+    }
+
+    .hamburger span {
+      display: block;
+      position: absolute;
+      height: 3px;
+      width: 100%;
+      background: white;
+      border-radius: 3px;
+      opacity: 1;
+      left: 0;
+      transform-origin: left center;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hamburger span:nth-child(1) {
+      top: 0;
+      transform-origin: left center;
+    }
+
+    .hamburger span:nth-child(2) {
+      top: 10.5px;
+      transform-origin: center;
+    }
+
+    .hamburger span:nth-child(3) {
+      top: 21px;
+      transform-origin: left center;
+    }
+
+    /* Active state - hamburger turns into white X */
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(10.5px) rotate(45deg);
+      width: 100%;
+      background: white;
+      box-shadow: none;
+      left: 0;
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-10.5px) rotate(-45deg);
+      width: 100%;
+      background: white;
+      box-shadow: none;
+      left: 0;
+    }
+
+    /* Slide-in menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 80vw;
+      max-width: 320px;
+      background: rgba(55, 48, 163, 0.98);
+      backdrop-filter: blur(16px);
+      box-shadow: 4px 0 20px rgba(0, 0, 0, 0.7);
+      transform: translateX(-110%);
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 60;
+      padding-top: 5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      border-top-right-radius: 1.5rem;
+      border-bottom-right-radius: 1.5rem;
+    }
+
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+
+    .mobile-menu a {
+      color: white;
+      font-weight: 700;
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      padding-left: 2rem;
+      letter-spacing: 0.12em;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .mobile-menu a::before {
+      content: "";
+      position: absolute;
+      left: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 6px;
+      height: 6px;
+      background: #d8b4fe;
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a:focus {
+      color: #d8b4fe;
+      outline: none;
+    }
+
+    .mobile-menu a:hover::before,
+    .mobile-menu a:focus::before {
+      opacity: 1;
+    }
+
+    .mobile-menu form {
+      margin: 0 auto;
+      width: 90%;
+      max-width: 280px;
+      display: flex;
+      align-items: center;
+      background: white;
+      border-radius: 9999px;
+      overflow: hidden;
+      height: 36px;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .mobile-menu form:focus-within {
+      box-shadow: 0 0 12px #d8b4fe;
+    }
+
+    .mobile-menu input[type="text"] {
+      flex-grow: 1;
+      padding-left: 1rem;
+      font-size: 0.75rem;
+      color: #4b5563;
+      border: none;
+      outline: none;
+      font-family: "Montserrat", sans-serif;
+    }
+
+    .mobile-menu button {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #4b5563;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .mobile-menu button:hover,
+    .mobile-menu button:focus {
+      color: #7c3aed;
+      outline: none;
+    }
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+      z-index: 55;
+      backdrop-filter: blur(2px);
+    }
+
+    .overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* FAQ styles */
+    .faq-item {
+      border-bottom: 1px solid #d1d5db;
+      /* gray-300 */
+      padding-bottom: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .faq-question {
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: 1.125rem;
+      /* text-lg */
+      color: #5b21b6;
+      /* purple-900 */
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+
+    .faq-question:hover,
+    .faq-question:focus {
+      color: #7c3aed;
+      /* purple-700 */
+      outline: none;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
+      opacity: 0;
+      color: #374151;
+      /* gray-700 */
+      font-size: 0.875rem;
+      /* text-sm */
+      line-height: 1.5rem;
+      /* leading-relaxed */
+      margin-top: 0.5rem;
+    }
+
+    .faq-answer.open {
+      opacity: 1;
+      max-height: 1000px;
+      /* large enough to show content */
+    }
+
+    .faq-icon {
+      transition: transform 0.3s ease;
+      color: #7c3aed;
+      /* purple-700 */
+      flex-shrink: 0;
+      margin-left: 0.5rem;
+    }
+
+    .faq-icon.open {
+      transform: rotate(45deg);
+    }
+
+
+    section#empresas {
+      max-width: 1024px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    article:focus-visible {
+      outline-offset: 4px;
+      outline-color: #7c3aed; /* purple-600 */
+      outline-style: solid;
+      outline-width: 3px;
+      outline-radius: 0.5rem;
+    }
+
+    /* Card container */
+    .card {
+      position: relative;
+      border-radius: 1.25rem;
+      overflow: hidden;
+     
+      background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: white;
+    }
+    .card:hover,
+    .card:focus-within {
+      transform: scale(1.07);
+      box-shadow: 0 25px 35px -5px rgb(124 58 237 / 0.6),
+        0 15px 15px -10px rgb(124 58 237 / 0.4);
+      outline: none;
+    }
+    /* Top band */
+    .card-top-band {
+      height: 4rem;
+      background: rgba(31, 41, 55, 0.9);
+      display: flex;
+      align-items: center;
+      padding: 0 1.75rem;
+      border-bottom-left-radius: 1.25rem;
+      border-bottom-right-radius: 1.25rem;
+      position: relative;
+      z-index: 10;
+      gap: 1rem;
+      
+    }
+    /* Logo icon in top band */
+    .card-logo-icon {
+      height: 3.25rem;
+      width: 3.25rem;
+      border-radius: 9999px;
+      object-fit: contain;
+     
+      opacity: 0.95;
+      flex-shrink: 0;
+      background: transparent;
+      transition: filter 0.3s ease;
+    }
+    
+    /* Title in top band */
+    .card-title-top {
+      color: white;
+      font-weight: 700;
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      user-select: none;
+      flex-grow: 1;
+      line-height: 1.3rem;
+     
+    }
+    /* Content area */
+    .card-content {
+      position: relative;
+      padding: 2.5rem 2rem 3rem;
+      background: transparent;
+      color: #e0d7ff;
+      font-size: 1rem;
+      line-height: 1.6rem;
+      text-align: center;
+      user-select: text;
+      min-height: 160px;
+      font-weight: 500;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    /* Button */
+    .card-btn {
+      display: inline-block;
+      margin-top: 1.75rem;
+      padding: 0.6rem 2.5rem;
+      border-radius: 9999px;
+      border: 2.5px solid white;
+      background-color: transparent;
+      color: white;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      transition: background-color 0.35s ease, color 0.35s ease,
+        box-shadow 0.35s ease;
+      user-select: none;
+      cursor: pointer;
+      text-decoration: none;
+      align-self: center;
+      box-shadow: 0 0 0 0 transparent;
+    }
+    .card-btn:hover,
+    .card-btn:focus-visible {
+      background-color: white;
+      color: #5b21b6;
+      outline: none;
+      box-shadow: 0 0 12px 3px #c4b5fd;
+    }
+    footer {
+      background-color: #2c1361;
+      color: #d8b4fe;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    footer a {
+      color: #c4b5fd;
+      transition: color 0.3s ease;
+    }
+    footer a:hover,
+    footer a:focus {
+      color: #e9d5ff;
+      outline: none;
+    }
+    .footer-container {
+      max-width: 7xl;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+    @media (min-width: 640px) {
+      .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+    }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .footer-logo img {
+      height: 48px;
+      width: 48px;
+      object-fit: contain;
+     
+    }
+    .footer-logo-text {
+      font-weight: 700;
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #ffff;
+      user-select: none;
+    }
+    .footer-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .footer-nav h5 {
+      font-weight: 700;
+      font-size: 1.125rem;
+      margin-bottom: 0.75rem;
+      color: #c4b5fd;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      user-select: none;
+    }
+    .footer-nav a {
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-decoration: none;
+    }
+    .footer-contact {
+      max-width: 280px;
+    }
+    .footer-contact p {
+      margin-bottom: 0.5rem;
+    }
+    .footer-socials {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    .footer-socials a {
+      font-size: 1.5rem;
+      color: #c4b5fd;
+      transition: color 0.3s ease;
+    }
+    .footer-socials a:hover,
+    .footer-socials a:focus {
+      color: #e9d5ff;
+      outline: none;
+    }
+    .footer-bottom {
+      border-top: 1px solid #4c1d95;
+      padding-top: 1.5rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #a78bfa;
+      user-select: none;
+    }
+
+    .underline-accent {
+      position: relative;
+      display: inline-block;
+      cursor: default;
+    }
+    .underline-accent::after {
+      content: "";
+      position: absolute;
+      width: 60%;
+      height: 3px;
+      background: linear-gradient(90deg, #7c3aed, #a78bfa);
+      bottom: -8px;
+      left: 20%;
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
+    .underline-accent:hover::after,
+    .underline-accent:focus-visible::after {
+      width: 100%;
+      left: 0;
+    }
+    /* Paragraph styling */
+    .text-body {
+      font-weight: 300;
+      font-size: 1.125rem; /* 18px */
+      line-height: 1.75rem; /* 28px */
+      color: #374151; /* Gray-700 */
+      letter-spacing: 0.015em;
+    }
+    .text-body strong {
+      font-weight: 600;
+      color: #6b21a8; /* Purple-700 */
+    }
+    /* Prometeus name with serif font and style */
+    .prometeus-name {
+      font-family: 'Merriweather', serif;
+      font-weight: 700;
+      font-style: normal;
+      color: #6b21a8;
+      letter-spacing: 0.05em;
+    }
+    /* Container for profiles with subtle gradient background and vertical separator */
+    .profiles-container {
+      position: relative;
+      background: linear-gradient(135deg, #f3e8ff 0%, #ede9fe 100%);
+      border-radius: 1rem;
+      padding: 3rem 2rem 3rem 3rem;
+      box-shadow: 0 10px 25px rgba(107, 33, 168, 0.1);
+    }
+    /* Vertical separator line */
+    .separator-vertical {
+      position: absolute;
+      top: 2rem;
+      bottom: 2rem;
+      left: 0;
+      width: 2px;
+      background: #d8b4fe; /* Purple-300 */
+      border-radius: 1px;
+      opacity: 0.4;
+      display: none; /* hidden for grid layout */
+    }
+    /* Profile card as timeline item */
+    .profile-item {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: default;
+      transition: transform 0.3s ease;
+      outline-offset: 4px;
+      padding: 1rem;
+      border-radius: 1rem;
+      background: white;
+      box-shadow: 0 4px 12px rgba(107, 33, 168, 0.1);
+      user-select: none;
+    }
+    .profile-item:focus-within,
+    .profile-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(107, 33, 168, 0.3);
+      z-index: 10;
+      background: #f5f3ff;
+    }
+    /* Profile image with subtle shadow and smooth hover */
+    .profile-pic {
+      border-radius: 9999px;
+      box-shadow: 0 8px 15px rgba(107, 33, 168, 0.15);
+      transition: box-shadow 0.3s ease, filter 0.3s ease;
+      width: 128px;
+      height: 128px;
+      object-fit: cover;
+      filter: none;
+      flex-shrink: 0;
+    }
+    .profile-item:hover .profile-pic,
+    .profile-item:focus-within .profile-pic {
+      filter: brightness(0.85) blur(1.5px);
+      box-shadow: 0 12px 25px rgba(107, 33, 168, 0.3);
+    }
+    /* Name and role container */
+    .profile-info {
+      margin-top: 1rem;
+      color: #6b21a8;
+      font-weight: 700;
+      font-size: 1.125rem;
+      letter-spacing: 0.05em;
+    }
+    .profile-role {
+      margin-top: 0.25rem;
+      font-weight: 500;
+      font-size: 0.875rem;
+      color: #a78bfa; /* Purple-300 */
+      letter-spacing: 0.05em;
+    }
+    /* Personal quote below role */
+    .profile-quote {
+      margin-top: 0.5rem;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 0.875rem;
+      color: #5b21b6; /* Purple-800 */
+      max-width: 280px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /* Social icons container */
+    .social-icons {
+      margin-top: 0.75rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .profile-item:hover .social-icons,
+    .profile-item:focus-within .social-icons {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    /* Social icon base style */
+    .social-icons a {
+      font-size: 1.5rem;
+      transition: color 0.3s ease;
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+    .social-icons a:focus-visible {
+      outline: 2px solid #6b21a8;
+    }
+    /* Social icon colors by role */
+    .jurist a {
+      color: #2563eb; /* Blue-600 */
+    }
+    .jurist a:hover {
+      color: #1e40af; /* Blue-800 */
+    }
+    .engineer a {
+      color: #7c3aed; /* Purple-700 */
+    }
+    .engineer a:hover {
+      color: #5b21b6; /* Purple-800 */
+    }
+    .designer a {
+      color: #db2777; /* Pink-600 */
+    }
+    .designer a:hover {
+      color: #9d174d; /* Pink-800 */
+    }
+    .architect a {
+      color: #9333ea; /* Purple-600 */
+    }
+    .architect a:hover {
+      color: #6b21a8; /* Purple-700 */
+    }
+    /* Responsive grid for profiles: 2x2 */
+    .profiles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2.5rem 3rem;
+      position: relative;
+    }
+    /* Remove vertical separator on grid layout */
+    @media (min-width: 768px) {
+      .separator-vertical {
+        display: none;
+      }
+    }
+    /* Responsive adjustments */
+    @media (max-width: 767px) {
+      .profiles-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .profile-item {
+        max-width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .profile-quote {
+        max-width: 280px;
+      }
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0;
+      background-color: white;
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+    nav a:hover::after {
+      width: 100%;
+    }
+    nav a {
+      position: relative;
+      padding-bottom: 4px;
+    }
+  </style>
+ </head>
+ <body>
+  <div class="relative min-h-screen bg-gradient-to-tr from-purple-700 via-purple-900 to-indigo-900 overflow-hidden">
+   <div class="max-w-7xl mx-auto px-6 py-8 relative z-10 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+    <div class="flex items-center space-x-2">
+      <img alt="White abstract logo icon with geometric shapes and smooth curves" class="w-40 h-40 sm:w-28 sm:h-28" height="160" src="IMG_8769-removebg-preview.png" width="160"/>
+    </div>
+     <nav class="hidden sm:flex items-center space-x-8 text-white text-lg font-normal tracking-wide select-none" id="desktopNav">
+       <a href="#">
+         Home
+       </a>
+       <span>
+         |
+       </span>
+       <a href="app.html">
+         Page
+       </a>
+       <span>
+         |
+       </span>
+       <a href="#">
+         About
+       </a>
+     </nav>
+   
+
+     <form class="hidden sm:flex items-center bg-white rounded-full overflow-hidden w-60 h-10">
+      <input class="flex-grow px-4 text-sm text-gray-700 focus:outline-none" placeholder="Search" type="text"/>
+      <button aria-label="Search" class="w-10 h-10 flex items-center justify-center text-gray-700" type="submit">
+       <i class="fas fa-search text-sm">
+       </i>
+      </button>
+     </form>
+   </div>
+   <!-- Hamburger for mobile only, fixed top right -->
+    <button aria-expanded="false" aria-label="Toggle menu" class="hamburger sm:hidden mt-16" id="hamburgerBtn" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+
+   <!-- Mobile menu -->
+   <nav aria-label="Mobile Navigation Menu" class="mobile-menu" hidden="" id="mobileMenu">
+    <a href="a2.html" tabindex="0">
+     Home
+    </a>
+    <a href="app.html" tabindex="0">
+     Page
+    </a>
+    <a href="a2.html" tabindex="0">
+     About
+    </a>
+    <form aria-label="Mobile search form" class="flex items-center w-full max-w-xs mx-auto mt-4" role="search">
+     <input aria-label="Search" class="flex-grow px-4 text-xs text-gray-700 focus:outline-none" placeholder="Search" type="text"/>
+     <button aria-label="Search" class="w-9 h-9 flex items-center justify-center text-gray-700" type="submit">
+      <i class="fas fa-search text-sm">
+      </i>
+     </button>
+    </form>
+   </nav>
+   <!-- Overlay -->
+   <div class="overlay" hidden="" id="overlay">
+   </div>
+   <main class="max-w-4xl mx-auto px-6 py-20 relative z-10 text-center sm:text-left">
+    <h1 class="text-white uppercase font-normal text-4xl sm:text-5xl leading-tight select-none fadeInUp" style="animation-delay: 0.2s">
+     PROMETEUS ASSOCIATION
+    </h1>
+    <h2 class="text-white text-xl italic font-normal tracking-wide mt-2 select-none mx-auto max-w-xs fadeInUp" style="animation-delay: 0.4s">
+     lus et Ratio
+    </h2>
+    <p class="text-white text-base font-normal mt-8 max-w-lg leading-relaxed select-none mx-auto sm:mx-0 fadeInUp" style="animation-delay: 0.6s">
+     Do risco à resolução, unimos inteligência artificial, automação e segurança blockchain para tornar sua gestão
+        jurídica mais ágil, estratégica e à prova do futuro. Inove com Athena, Kleos, Parthenon, Thémis, Pandora e
+        Khartēs — uma nova era da advocacia começa aqui.
+    </p>
+    <div class="mt-8 flex justify-center sm:justify-start space-x-4 fadeInUp" style="animation-delay: 0.8s">
+     <button class="text-white text-sm font-normal tracking-wide border border-white rounded-md px-4 py-1 hover:bg-white hover:text-purple-900 transition select-none" type="button">
+      Contate-nos
+     </button>
+     <button class="bg-white text-gray-900 text-sm font-normal tracking-wide rounded-md px-4 py-1 hover:bg-gray-200 transition select-none" type="button">
+      Acessar Prometeus
+     </button>
+    </div>
+   </main>
+   <div aria-hidden="true" class="absolute inset-0 -z-10 flex flex-wrap justify-center items-center opacity-20">
+    <img alt="Abstract purple and indigo geometric shapes floating in background" class="w-32 h-32 m-4" height="128" src="Part_II__25_-removebg-preview.png" width="128"/>
+    <img alt="Abstract purple and indigo geometric shapes floating in background" class="w-24 h-24 m-4" height="96" src="Part_II__25_-removebg-preview.png" width="96"/>
+    <img alt="Abstract purple and indigo geometric shapes floating in background" class="w-28 h-28 m-4" height="112" src="Part_II__25_-removebg-preview.png" width="112"/>
+    <img alt="Abstract purple and indigo geometric shapes floating in background" class="w-20 h-20 m-4" height="80" src="Part_II__25_-removebg-preview.png" width="80"/>
+    <img alt="Abstract purple and indigo geometric shapes floating in background" class="w-32 h-32 m-4" height="128" src="Part_II__25_-removebg-preview.png" width="128"/>
+    <img alt="Abstract purple and indigo geometric shapes floating in background" class="w-24 h-24 m-4" height="96" src="Part_II__25_-removebg-preview.png" width="96"/>
+    <img alt="Abstract purple and indigo geometric shapes floating in background" class="w-28 h-28 m-4" height="112" src="Part_II__25_-removebg-preview.png" width="112"/>
+    <img alt="Abstract purple and indigo geometric shapes floating in background" class="w-20 h-20 m-4" height="80" src="Part_II__25_-removebg-preview.png" width="80"/>
+   </div>
+  </div>
+  <img alt="Decorative abstract purple and indigo geometric shapes with smooth curves" class="hidden lg:block absolute right-0 top-[60%] transform -translate-y-1/2 h-[100vh] max-h-[80vh] w-auto pointer-events-none select-none" height="800" src="Part_II__25_-removebg-preview.png" style="z-index:5" width="400"/>
+  <div aria-hidden="true" class="absolute inset-0 -z-10 flex flex-wrap justify-center items-center opacity-20">
+   <img alt="Abstract purple and indigo geometric shapes floating in background" class="w-32 h-32 m-4" height="128" src="https://storage.googleapis.com/a1aa/image/07b07296-4fd9-4d22-52b0-e0ecc8d5af07.jpg" width="128"/>
+   <img alt="Abstract purple and indigo geometric shapes floating in background" class="w-24 h-24 m-4" height="96" src="https://storage.googleapis.com/a1aa/image/07b07296-4fd9-4d22-52b0-e0ecc8d5af07.jpg" width="96"/>
+   <img alt="Abstract purple and indigo geometric shapes floating in background" class="w-28 h-28 m-4" height="112" src="https://storage.googleapis.com/a1aa/image/07b07296-4fd9-4d22-52b0-e0ecc8d5af07.jpg" width="112"/>
+   <img alt="Abstract purple and indigo geometric shapes floating in background" class="w-20 h-20 m-4" height="80" src="https://storage.googleapis.com/a1aa/image/07b07296-4fd9-4d22-52b0-e0ecc8d5af07.jpg" width="80"/>
+   <img alt="Decorative abstract purple and indigo geometric shapes with smooth curves" class="w-32 h-32 m-4" height="128" src="https://storage.googleapis.com/a1aa/image/ae1f89a6-edb4-48a9-b0c5-08353a927c39.jpg" width="128"/>
+  </div>
+  <section class="bg-white py-16 px-6">
+   <div class="max-w-7xl mx-auto">
+    <h3 class="text-gray-900 text-3xl mb-10 text-center sm:text-left fadeInUp" style="animation-delay: 1s">
+     PROMETEUS SOLUTIONS
+    </h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+     <div class="bg-purple-50 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-shadow duration-300 fadeInUp" style="animation-delay: 1.1s">
+      <div class="flex items-center justify-center w-16 h-16 rounded-full bg-purple-200 text-purple-700 text-5xl pulseScale mb-5 mx-auto">
+       <i aria-hidden="true" class="fas fa-shield-alt">
+       </i>
+      </div>
+      <h4 class="text-purple-900 text-xl font-semibold mb-3 text-center tracking-wide uppercase">
+       ATHENA AI
+      </h4>
+      <p class="text-gray-700 text-sm leading-relaxed text-center px-2">
+        A ATHENA é uma IA jurídica preventiva que antecipa riscos e orienta decisões com clareza e precisão, tornando o Direito acessível e estratégico no dia a dia.
+
+      </p>
+     </div>
+     <div class="bg-purple-50 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-shadow duration-300 fadeInUp" style="animation-delay: 1.3s">
+      <div class="flex items-center justify-center w-16 h-16 rounded-full bg-purple-200 text-purple-700 text-5xl pulseScale mb-5 mx-auto">
+       <i aria-hidden="true" class="fas fa-gavel">
+       </i>
+      </div>
+      <h4 class="text-purple-900 text-xl font-semibold mb-3 text-center tracking-wide uppercase">
+       KLEOS
+      </h4>
+      <p class="text-gray-700 text-sm leading-relaxed text-center px-2">
+        A Kleos é uma plataforma que ajuda escritórios de advocacia a se tornarem mais lucrativos, com controle financeiro, análise de produtividade e identificação de falhas operacionais.
+
+      </p>
+     </div>
+     <div class="bg-purple-50 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-shadow duration-300 fadeInUp" style="animation-delay: 1.5s">
+      <div class="flex items-center justify-center w-16 h-16 rounded-full bg-purple-200 text-purple-700 text-5xl pulseScale mb-5 mx-auto">
+       <i aria-hidden="true" class="fas fa-chart-bar">
+       </i>
+      </div>
+      <h4 class="text-purple-900 text-xl font-semibold mb-3 text-center tracking-wide uppercase">
+       PARTHENON
+      </h4>
+      <p class="text-gray-700 text-sm leading-relaxed text-center px-2">
+        Parthenon é uma plataforma jurídica que facilita o acompanhamento de processos, documentos e comunicação entre clientes e advogados, garantindo mais transparência e praticidade.
+
+      </p>
+     </div>
+     <div class="bg-purple-50 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-shadow duration-300 fadeInUp" style="animation-delay: 1.7s">
+      <div class="flex items-center justify-center w-16 h-16 rounded-full bg-purple-200 text-purple-700 text-5xl pulseScale mb-5 mx-auto">
+       <i aria-hidden="true" class="fas fa-pen-fancy">
+       </i>
+      </div>
+      <h4 class="text-purple-900 text-xl font-semibold mb-3 text-center tracking-wide uppercase">
+       THÉMIS
+      </h4>
+      <p class="text-gray-700 text-sm leading-relaxed text-center px-2">
+       Soluções acessíveis e seguras de assinatura digital para indivíduos e
+            microempresas, garantindo conformidade legal com facilidade.
+      </p>
+     </div>
+     <div class="bg-purple-50 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-shadow duration-300 fadeInUp" style="animation-delay: 1.9s">
+      <div class="flex items-center justify-center w-16 h-16 rounded-full bg-purple-200 text-purple-700 text-5xl pulseScale mb-5 mx-auto">
+       <i aria-hidden="true" class="fas fa-file-upload">
+       </i>
+      </div>
+      <h4 class="text-purple-900 text-xl font-semibold mb-3 text-center tracking-wide uppercase">
+       PANDORA
+      </h4>
+      <p class="text-gray-700 text-sm leading-relaxed text-center px-2">
+        A Pandora é uma plataforma que registra provas digitais com validade jurídica, usando criptografia, carimbo de tempo e blockchain — sem precisar de cartório.
+
+      </p>
+     </div>
+     <div class="bg-purple-50 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-shadow duration-300 fadeInUp" style="animation-delay: 2.1s">
+      <div class="flex items-center justify-center w-16 h-16 rounded-full bg-purple-200 text-purple-700 text-5xl pulseScale mb-5 mx-auto">
+       <i aria-hidden="true" class="fas fa-map-marked-alt">
+       </i>
+      </div>
+      <h4 class="text-purple-900 text-xl font-semibold mb-3 text-center tracking-wide uppercase">
+       KHARTĒS
+      </h4>
+      <p class="text-gray-700 text-sm leading-relaxed text-center px-2">
+       Plataforma intuitiva para mapeamento jurídico, visualizando etapas,
+            custos e prazos para decisões informadas.
+      </p>
+     </div>
+    </div>
+   </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+   
+  <section class="bg-white py-16 px-6 max-w-7xl mx-auto">
+   <h3 class="text-gray-900 text-3xl font-normal uppercase mb-12 text-center sm:text-left fadeInUp" style="animation-delay: 2.3s">
+    QUEM SOMOS
+   </h3>
+   <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+    <div class="text-gray-800 text-base leading-relaxed space-y-6 fadeInUp" style="animation-delay: 2.5s">
+     <p>
+      A Prometeus Association é uma entidade visionária, surgida da convergência entre tecnologia e direito. Somos
+          uma força propulsora da transformação jurídica, composta por especialistas de diversas áreas — juristas,
+          engenheiros de IA, designers e arquitetos de sistemas — todos unidos por uma missão: tornar o universo
+          jurídico mais acessível, estratégico e seguro através da tecnologia.
+     </p>
+     <p>
+      Valorizamos não só a expertise do nosso time, mas principalmente o propósito. A Prometeus se define como mais
+          do que uma empresa de tecnologia: somos uma associação comprometida com ética, inovação e impacto social.
+     </p>
+    </div>
+    <div class="grid grid-cols-2 gap-8 items-center fadeInUp" style="animation-delay: 2.7s">
+     <div class="flex flex-col items-center space-y-3 text-center">
+      <img alt="Portrait of Dr. Ana Silva, female jurist with short dark hair, wearing glasses and a professional blazer, neutral background" class="w-28 h-28 rounded-full object-cover" height="112" src="https://storage.googleapis.com/a1aa/image/1c1d6764-f8e8-4e30-a59a-1ee531763025.jpg" width="112"/>
+      <p class="text-gray-900 font-semibold uppercase tracking-wide text-sm">
+       Dr. Ana Silva
+      </p>
+      <p class="text-gray-600 text-xs">
+       Jurista
+      </p>
+     </div>
+     <div class="flex flex-col items-center space-y-3 text-center">
+      <img alt="Portrait of João Pereira, male AI engineer with short black hair and beard, wearing casual shirt, neutral background" class="w-28 h-28 rounded-full object-cover" height="112" src="https://storage.googleapis.com/a1aa/image/ca87b0c6-5e16-443f-d6ef-4804051e9dfa.jpg" width="112"/>
+      <p class="text-gray-900 font-semibold uppercase tracking-wide text-sm">
+       João Pereira
+      </p>
+      <p class="text-gray-600 text-xs">
+       Engenheiro de IA
+      </p>
+     </div>
+     <div class="flex flex-col items-center space-y-3 text-center">
+      <img alt="Portrait of Maria Costa, female designer with long brown hair, smiling, wearing a light blouse, neutral background" class="w-28 h-28 rounded-full object-cover" height="112" src="https://storage.googleapis.com/a1aa/image/6ccf5833-d8ea-44b6-6ae5-8c298fb62aee.jpg" width="112"/>
+      <p class="text-gray-900 font-semibold uppercase tracking-wide text-sm">
+       Maria Costa
+      </p>
+      <p class="text-gray-600 text-xs">
+       Designer
+      </p>
+     </div>
+     <div class="flex flex-col items-center space-y-3 text-center">
+      <img alt="Portrait of Carlos Mendes, male systems architect with short gray hair and glasses, wearing a dark shirt, neutral background" class="w-28 h-28 rounded-full object-cover" height="112" src="https://storage.googleapis.com/a1aa/image/02eb7e3e-7c08-4931-f828-873b09450e42.jpg" width="112"/>
+      <p class="text-gray-900 font-semibold uppercase tracking-wide text-sm">
+       Carlos Mendes
+      </p>
+      <p class="text-gray-600 text-xs">
+       Arquiteto de Sistemas
+      </p>
+     </div>
+    </div>
+   </div>
+  </section>
+  <section class="bg-gray-50 py-16 px-6 max-w-7xl mx-auto">
+   <h3 class="text-gray-900 text-3xl font-normal uppercase mb-12 text-center sm:text-left fadeInUp" style="animation-delay: 2.9s">
+    FAQ - PERGUNTAS FREQUENTES
+   </h3>
+   <div class="fadeInUp max-w-4xl mx-auto" style="animation-delay: 3.1s">
+    <div class="faq-item">
+     <button aria-expanded="false" class="faq-question w-full text-left" type="button">
+      O que é a Prometeus Association?
+      <span class="faq-icon">
+       <i class="fas fa-plus">
+       </i>
+      </span>
+     </button>
+     <div class="faq-answer max-h-0 overflow-hidden opacity-0 transition-all duration-400 ease-in-out">
+      A Prometeus Association é uma entidade que une tecnologia e direito para transformar a gestão jurídica,
+          oferecendo soluções inovadoras baseadas em inteligência artificial, blockchain e automação.
+     </div>
+    </div>
+    <div class="faq-item">
+     <button aria-expanded="false" class="faq-question w-full text-left" type="button">
+      Como funcionam as soluções da Prometeus?
+      <span class="faq-icon">
+       <i class="fas fa-plus">
+       </i>
+      </span>
+     </button>
+     <div class="faq-answer max-h-0 overflow-hidden opacity-0 transition-all duration-400 ease-in-out">
+      Nossas soluções utilizam IA para análise preditiva, automação de processos jurídicos e gestão segura de
+          documentos via blockchain, facilitando decisões estratégicas e ágeis.
+     </div>
+    </div>
+    <div class="faq-item">
+     <button aria-expanded="false" class="faq-question w-full text-left" type="button">
+      É necessário ter formação jurídica para usar as soluções?
+      <span class="faq-icon">
+       <i class="fas fa-plus">
+       </i>
+      </span>
+     </button>
+     <div class="faq-answer max-h-0 overflow-hidden opacity-0 transition-all duration-400 ease-in-out">
+      Não. As ferramentas são desenvolvidas para serem acessíveis a profissionais jurídicos e não jurídicos, com
+          interfaces intuitivas e suporte dedicado.
+     </div>
+    </div>
+    <div class="faq-item">
+     <button aria-expanded="false" class="faq-question w-full text-left" type="button">
+      Quais os benefícios de ser associado à Prometeus?
+      <span class="faq-icon">
+       <i class="fas fa-plus">
+       </i>
+      </span>
+     </button>
+     <div class="faq-answer max-h-0 overflow-hidden opacity-0 transition-all duration-400 ease-in-out">
+      Associados têm acesso a recursos exclusivos, networking com especialistas, atualizações antecipadas das
+          soluções e participação em eventos e treinamentos.
+     </div>
+    </div>
+   </div>
+  </section>
+     <section class="bg-purple-900 py-20 px-6 mt-16 rounded-t-3xl overflow-hidden relative">
+        <div class="max-w-7xl mx-auto text-center text-white">
+         <h3 class="text-4xl sm:text-5xl font-normal uppercase mb-8 fadeInUp" style="animation-delay: 2.5s">
+          Junte-se à Prometeus Association
+         </h3>
+         <p class="max-w-3xl mx-auto text-sm leading-relaxed mb-12 fadeInUp" style="animation-delay: 2.7s">
+          Seja parte da revolução na tecnologia jurídica. Nossa associação oferece
+             recursos exclusivos, networking com especialistas do setor e acesso
+             antecipado às inovações da Athena AI.
+         </p>
+         <button class="bg-white text-purple-900 font-normal uppercase rounded-full px-8 py-3 hover:bg-gray-200 transition select-none fadeInUp inline-flex items-center justify-center mx-auto" style="animation-delay: 2.9s">
+          <i class="fas fa-rocket mr-3">
+          </i>
+          PARTICIPE AGORA
+         </button>
+        </div>
+       </section>
+
+   
+   <section class="max-w-4xl mx-auto px-6 pt-12">
+    <h4 class="text-3xl text-purple-900 mb-12 text-center uppercase tracking-wide font-normal fadeInUp" style="font-family: 'Montserrat', sans-serif; font-weight: 400;">
+     Empresas Associadas à Prometeus 
+    </h4>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-12">
+     <article class="card focus:outline-none fadeInUp" style="animation-delay: 3.0s" tabindex="0" role="region" aria-label="Empresa Alpha">
+      <div class="card-content">
+       <p>
+         Como o titã que trouxe o fogo aos homens, nascemos para quebrar mitos. Descomplicamos o Direito, aproximamos o conhecimento jurídico e tiramos os advogados dos pedestais. Clareza, tecnologia e proximidade — essa é a nossa missão.
+       </p>
+       <a class="card-btn" href="#" tabindex="0" aria-label="Saiba mais sobre Empresa Alpha">
+        Saiba Mais
+       </a>
+      </div>
+      <div class="card-top-band">
+       <img alt="Logo of Empresa Alpha, a stylized letter A in purple and white" class="card-logo-icon" height="52" src="IMG_8732-removebg-preview.png" width="52"/>
+       <h5 class="card-title-top">
+        Prometeus Advogados
+       </h5>
+      </div>
+     </article>
+     <article class="card focus:outline-none fadeInUp" style="animation-delay: 3.1s" tabindex="0" role="region" aria-label="Beta Solutions">
+      <div class="card-content">
+       <p>
+         Projetar seu espaço deve ser simples, inteligente e do seu jeito. Unimos tecnologia e criatividade para transformar sua experiência: você acompanha tudo em tempo real e conversa direto com seu arquiteto pessoal.
+         Afinal, não construímos apenas casas — projetamos sonhos.
+       </p>
+       <a class="card-btn" href="https://linedev06.github.io/src/" tabindex="0" aria-label="Saiba mais sobre Beta Solutions">
+        Saiba Mais
+       </a>
+      </div>
+      <div class="card-top-band">
+       <img alt="Logo of Beta Solutions, a blue and white hexagonal shape with interconnected nodes" class="card-logo-icon" height="52" src="Cópia de Design sem nome.png" width="52"/>
+       <h5 class="card-title-top">
+   Tektõn
+       </h5>
+      </div>
+     </article>
+    </div>
+   </section>
+   
+     
+
+   <footer class="mt-20">
+    <div class="footer-container">
+     <div class="footer-logo" aria-label="Prometeus Association logo and name">
+      <img alt="White abstract logo icon with geometric shapes and smooth curves" src="IMG_8769-removebg-preview.png" width="48" height="48"/>
+      <span class="footer-logo-text">PROMETEUS ASSOCIATION</span>
+     </div>
+     <nav class="footer-nav" aria-label="Footer navigation">
+      <h5>Links</h5>
+      <a href="#" tabindex="0">Home</a>
+      <a href="app.html" tabindex="0">Page</a>
+      <a href="#" tabindex="0">About</a>
+      <a href="#" tabindex="0">Contact</a>
+     </nav>
+     <div class="footer-contact" aria-label="Contact information">
+      <h5>Contato</h5>
+      <p>Rua da Inovação, 123</p>
+      <p>São Paulo, SP, Brasil</p>
+      <p>Email: contato@prometeus.com</p>
+      <p>Telefone: +55 11 99999-9999</p>
+      <div class="footer-socials" aria-label="Social media links">
+       <a href="https://facebook.com/prometeus" target="_blank" rel="noopener" aria-label="Facebook" tabindex="0"><i class="fab fa-facebook-f"></i></a>
+       <a href="https://twitter.com/prometeus" target="_blank" rel="noopener" aria-label="Twitter" tabindex="0"><i class="fab fa-twitter"></i></a>
+       <a href="https://linkedin.com/company/prometeus" target="_blank" rel="noopener" aria-label="LinkedIn" tabindex="0"><i class="fab fa-linkedin-in"></i></a>
+       <a href="https://instagram.com/prometeus" target="_blank" rel="noopener" aria-label="Instagram" tabindex="0"><i class="fab fa-instagram"></i></a>
+      </div>
+     </div>
+    </div>
+    <div class="footer-bottom" role="contentinfo">
+     &copy; 2024 Prometeus Association. Todos os direitos reservados.
+    </div>
+   </footer>
+   
+   
+  <script>
+   const hamburgerBtn = document.getElementById("hamburgerBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const overlay = document.getElementById("overlay");
+
+    function toggleMenu() {
+      const expanded =
+        hamburgerBtn.getAttribute("aria-expanded") === "true" || false;
+      hamburgerBtn.setAttribute("aria-expanded", !expanded);
+      hamburgerBtn.classList.toggle("active");
+      if (mobileMenu.hasAttribute("hidden")) {
+        mobileMenu.removeAttribute("hidden");
+        mobileMenu.classList.add("open");
+        overlay.removeAttribute("hidden");
+        overlay.classList.add("active");
+        // Trap focus inside mobile menu
+        mobileMenu.querySelector("a, input, button").focus();
+        // Move hamburger left so it doesn't overlap menu
+        hamburgerBtn.style.right = "calc(80vw + 1rem)";
+      } else {
+        mobileMenu.classList.remove("open");
+        overlay.classList.remove("active");
+        // Reset hamburger position
+        hamburgerBtn.style.right = "1rem";
+        setTimeout(() => {
+          mobileMenu.setAttribute("hidden", "");
+          overlay.setAttribute("hidden", "");
+        }, 500);
+      }
+    }
+
+    hamburgerBtn.addEventListener("click", toggleMenu);
+    overlay.addEventListener("click", toggleMenu);
+
+    // Close menu on Escape key
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        if (!mobileMenu.hasAttribute("hidden")) {
+          toggleMenu();
+          hamburgerBtn.focus();
+        }
+      }
+    });
+
+    // FAQ toggle logic
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        // Close all other answers
+        document.querySelectorAll('.faq-question').forEach(btn => {
+          btn.setAttribute('aria-expanded', 'false');
+          btn.querySelector('.faq-icon').classList.remove('open');
+          btn.nextElementSibling.classList.remove('open');
+        });
+        if (!expanded) {
+          button.setAttribute('aria-expanded', 'true');
+          button.querySelector('.faq-icon').classList.add('open');
+          button.nextElementSibling.classList.add('open');
+        }
+      });
+    });
+  </script>
+ </body>
+</html>

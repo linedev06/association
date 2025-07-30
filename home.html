@@ -1,0 +1,733 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>Prometeus Association - Cadastro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      font-family: "Montserrat", sans-serif;
+      background: linear-gradient(
+        135deg,
+        #4c1d95 0%,
+        #3b0764 50%,
+        #1e293b 100%
+      );
+      min-height: 100vh;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-weight: 400;
+      text-transform: uppercase;
+      font-family: "Montserrat", sans-serif;
+      letter-spacing: 0.12em;
+      margin: 0;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fadeInUp {
+      animation: fadeInUp 0.8s ease forwards;
+      opacity: 0;
+    }
+
+    /* Form input focus */
+    input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px #7c3aed88;
+      border-color: #7c3aed;
+    }
+
+    /* Custom checkbox */
+    input[type="checkbox"] {
+      accent-color: #7c3aed;
+    }
+
+    /* Error message style */
+    .error-message {
+      color: #dc2626; /* red-600 */
+      font-size: 0.875rem;
+      margin-top: 0.25rem;
+      min-height: 1.25rem;
+    }
+
+    /* Scrollbar for overflow content */
+    .scrollbar-thin::-webkit-scrollbar {
+      width: 6px;
+    }
+    .scrollbar-thin::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+      background-color: #7c3aed;
+      border-radius: 3px;
+    }
+
+    /* Hide mobile form on sm and up */
+    #registerFormMobile {
+      display: block;
+    }
+    @media (min-width: 640px) {
+      #registerFormMobile {
+        display: none;
+      }
+    }
+  </style>
+ </head>
+ <body>
+  <main
+    class="w-full max-w-6xl bg-white bg-opacity-10 backdrop-blur-md rounded-3xl shadow-2xl flex flex-col sm:flex-row overflow-hidden"
+    style="min-height: 600px;"
+  >
+   <!-- Left side: Logo and info -->
+   <section
+     class="sm:w-1/2 bg-gradient-to-b from-purple-900 via-purple-800 to-indigo-900 p-12 flex flex-col justify-center items-start gap-8 text-white"
+   >
+    <img
+      alt="White abstract logo icon with geometric shapes and smooth curves, glowing softly on dark background"
+      height="128"
+      loading="lazy"
+      src="IMG_8769-removebg-preview.png"
+      width="128"
+      class="mb-4"
+    />
+    <h1
+      class="text-4xl sm:text-5xl font-normal tracking-widest fadeInUp"
+      style="animation-delay: 0.15s"
+    >
+     PROMETEUS
+    </h1>
+    <h2
+      class="text-lg sm:text-xl italic font-light tracking-wide fadeInUp"
+      style="animation-delay: 0.3s"
+    >
+     lus et Ratio
+    </h2>
+    <p
+      class="text-sm sm:text-base leading-relaxed max-w-md fadeInUp"
+      style="animation-delay: 0.45s"
+    >
+     Junte-se ao ecossistema que trabalha a seu favor.<br />
+     Menos repetição, mais estratégia.<br />
+     Cadastre-se e experimente o Direito com poder computacional real.
+    </p>
+    <nav class="flex space-x-6 mt-6" aria-label="Social media links">
+     <a
+       href="#"
+       aria-label="Facebook"
+       class="text-purple-300 hover:text-purple-100 transition focus:outline-none focus:ring-2 focus:ring-purple-400 rounded"
+       ><i class="fab fa-facebook-f fa-lg"></i
+     ></a>
+     <a
+       href="#"
+       aria-label="Twitter"
+       class="text-purple-300 hover:text-purple-100 transition focus:outline-none focus:ring-2 focus:ring-purple-400 rounded"
+       ><i class="fab fa-twitter fa-lg"></i
+     ></a>
+     <a
+       href="#"
+       aria-label="LinkedIn"
+       class="text-purple-300 hover:text-purple-100 transition focus:outline-none focus:ring-2 focus:ring-purple-400 rounded"
+       ><i class="fab fa-linkedin-in fa-lg"></i
+     ></a>
+     <a
+       href="#"
+       aria-label="Instagram"
+       class="text-purple-300 hover:text-purple-100 transition focus:outline-none focus:ring-2 focus:ring-purple-400 rounded"
+       ><i class="fab fa-instagram fa-lg"></i
+     ></a>
+    </nav>
+   </section>
+
+   <!-- Right side: Registration form -->
+   <section
+     class="sm:w-1/2 bg-white rounded-tr-3xl rounded-br-3xl p-10 sm:p-14 flex flex-col justify-center shadow-lg"
+   >
+    <form
+      id="registerForm"
+      aria-label="Registration form"
+      autocomplete="off"
+      novalidate
+      class="space-y-6 max-w-md w-full mx-auto"
+      style="animation-delay: 0.6s"
+    >
+     <h3
+       class="text-purple-900 text-3xl font-normal uppercase mb-8 text-center tracking-widest sm:tracking-[0.3em] md:tracking-[0.4em] text-[18px] sm:text-3xl"
+     >
+      CADASTRE-SE
+     </h3>
+
+     <div>
+      <label
+        for="name"
+        class="block text-gray-800 font-semibold mb-2 uppercase tracking-wide text-sm"
+        >Nome Completo</label
+      >
+      <div class="relative">
+       <input
+         id="name"
+         name="name"
+         type="text"
+         required
+         placeholder="Nome Completo"
+         aria-required="true"
+         aria-describedby="nameError"
+         class="w-full h-12 px-4 rounded-md border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-700 text-base pr-10 transition"
+       />
+       <span
+         aria-hidden="true"
+         class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"
+         ><i class="fas fa-user"></i
+       ></span>
+      </div>
+      <p id="nameError" class="error-message hidden" role="alert"></p>
+     </div>
+
+     <div>
+      <label
+        for="email"
+        class="block text-gray-800 font-semibold mb-2 uppercase tracking-wide text-sm"
+        >Email</label
+      >
+      <div class="relative">
+       <input
+         id="email"
+         name="email"
+         type="email"
+         required
+         placeholder="seuemail@exemplo.com"
+         aria-required="true"
+         aria-describedby="emailError"
+         class="w-full h-12 px-4 rounded-md border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-700 text-base pr-10 transition"
+       />
+       <span
+         aria-hidden="true"
+         class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"
+         ><i class="fas fa-envelope"></i
+       ></span>
+      </div>
+      <p id="emailError" class="error-message hidden" role="alert"></p>
+     </div>
+
+     <div class="relative">
+      <label
+        for="password"
+        class="block text-gray-800 font-semibold mb-2 uppercase tracking-wide text-sm"
+        >Senha</label
+      >
+      <input
+        id="password"
+        name="password"
+        type="password"
+        required
+        placeholder="••••••••"
+        aria-required="true"
+        aria-describedby="passwordError"
+        class="w-full h-12 px-4 rounded-md border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-700 text-base pr-12 transition"
+      />
+      <button
+        type="button"
+        id="togglePassword"
+        aria-label="Toggle password visibility"
+        class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded transition"
+      >
+       <i class="fas fa-eye"></i>
+      </button>
+      <p id="passwordError" class="error-message hidden" role="alert"></p>
+     </div>
+
+     <div class="relative">
+      <label
+        for="confirmPassword"
+        class="block text-gray-800 font-semibold mb-2 uppercase tracking-wide text-sm"
+        >Confirmar Senha</label
+      >
+      <input
+        id="confirmPassword"
+        name="confirmPassword"
+        type="password"
+        required
+        placeholder="Confirmar Senha"
+        aria-required="true"
+        aria-describedby="confirmPasswordError"
+        class="w-full h-12 px-4 rounded-md border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-700 text-base pr-12 transition"
+      />
+      <button
+        type="button"
+        id="toggleConfirmPassword"
+        aria-label="Toggle confirm password visibility"
+        class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded transition"
+      >
+       <i class="fas fa-eye"></i>
+      </button>
+      <p id="confirmPasswordError" class="error-message hidden" role="alert"></p>
+     </div>
+
+     <button
+       type="submit"
+       aria-live="polite"
+       class="w-full bg-gradient-to-r from-purple-700 to-indigo-700 hover:from-purple-800 hover:to-indigo-800 text-white font-semibold py-3 rounded-md uppercase tracking-widest transition focus:outline-none focus:ring-4 focus:ring-purple-400 flex items-center justify-center gap-3 shadow-lg shadow-purple-600/50 text-base"
+     >
+      Cadastrar
+      <svg
+        id="loadingSpinner"
+        class="w-5 h-5 animate-spin hidden"
+        fill="none"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+       <circle
+         class="opacity-25"
+         cx="12"
+         cy="12"
+         r="10"
+         stroke="currentColor"
+         stroke-width="4"
+       ></circle>
+       <path
+         class="opacity-75"
+         fill="currentColor"
+         d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+       ></path>
+      </svg>
+     </button>
+
+     <p class="mt-6 text-center text-gray-700 text-sm max-w-md mx-auto">
+      Já tem uma conta?
+      <a
+        href="index.html"
+        class="text-purple-600 hover:text-purple-800 font-semibold focus:outline-none focus:underline"
+        >Faça login aqui</a
+      >
+     </p>
+
+     <p
+       class="mt-10 border-t border-gray-300/30 pt-6 text-center text-gray-500 text-xs select-none max-w-md mx-auto"
+     >
+      © 2025 Prometeus Association. Todos os direitos reservados.
+     </p>
+    </form>
+   </section>
+  </main>
+
+  <!-- Mobile only registration form -->
+  <form
+    id="registerFormMobile"
+    aria-label="Registration form mobile"
+    autocomplete="off"
+    novalidate
+    class="sm:hidden w-full max-w-sm px-8 py-10 rounded-3xl bg-white bg-opacity-20 backdrop-blur-md flex flex-col gap-8 shadow-lg mx-auto"
+    style="max-height: 90vh;"
+  >
+   <div class="flex flex-col items-center space-y-4">
+    <img
+      alt="White abstract Prometeus logo icon with geometric shapes and smooth curves on dark background"
+      src="https://storage.googleapis.com/a1aa/image/f821eea8-0f91-4f2a-3b84-262ede4bb6c8.jpg"
+      width="96"
+      height="96"
+      loading="lazy"
+      class="w-24 h-24"
+    />
+    <h1 class="text-white text-3xl font-normal uppercase tracking-widest">
+     PROMETEUS
+    </h1>
+    <h2 class="text-purple-200 italic font-light tracking-wide text-sm">
+     lus et Ratio
+    </h2>
+   </div>
+
+   <div class="relative">
+    <label for="nameMobile" class="sr-only">Nome Completo</label>
+    <input
+      id="nameMobile"
+      name="nameMobile"
+      type="text"
+      required
+      placeholder="Nome Completo"
+      aria-required="true"
+      aria-describedby="nameErrorMobile"
+      class="w-full h-12 px-4 rounded-md border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-700 text-base"
+    />
+    <span
+      aria-hidden="true"
+      class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"
+      ><i class="fas fa-user"></i
+    ></span>
+    <p id="nameErrorMobile" class="error-message hidden" role="alert"></p>
+   </div>
+
+   <div class="relative">
+    <label for="emailMobile" class="sr-only">Email</label>
+    <input
+      id="emailMobile"
+      name="emailMobile"
+      type="email"
+      required
+      placeholder="seuemail@exemplo.com"
+      aria-required="true"
+      aria-describedby="emailErrorMobile"
+      class="w-full h-12 px-4 rounded-md border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-700 text-base"
+    />
+    <span
+      aria-hidden="true"
+      class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"
+      ><i class="fas fa-envelope"></i
+    ></span>
+    <p id="emailErrorMobile" class="error-message hidden" role="alert"></p>
+   </div>
+
+   <div class="relative">
+    <label for="passwordMobile" class="sr-only">Senha</label>
+    <input
+      id="passwordMobile"
+      name="passwordMobile"
+      type="password"
+      required
+      placeholder="••••••••"
+      aria-required="true"
+      aria-describedby="passwordErrorMobile"
+      class="w-full h-12 px-4 rounded-md border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-700 text-base pr-12"
+    />
+    <button
+      type="button"
+      id="togglePasswordMobile"
+      aria-label="Toggle password visibility"
+      class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
+    >
+     <i class="fas fa-eye"></i>
+    </button>
+    <p id="passwordErrorMobile" class="error-message hidden" role="alert"></p>
+   </div>
+
+   <div class="relative">
+    <label for="confirmPasswordMobile" class="sr-only">Confirmar Senha</label>
+    <input
+      id="confirmPasswordMobile"
+      name="confirmPasswordMobile"
+      type="password"
+      required
+      placeholder="Confirmar Senha"
+      aria-required="true"
+      aria-describedby="confirmPasswordErrorMobile"
+      class="w-full h-12 px-4 rounded-md border border-gray-300 text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-700 text-base pr-12"
+    />
+    <button
+      type="button"
+      id="toggleConfirmPasswordMobile"
+      aria-label="Toggle confirm password visibility"
+      class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 rounded"
+    >
+     <i class="fas fa-eye"></i>
+    </button>
+    <p id="confirmPasswordErrorMobile" class="error-message hidden" role="alert"></p>
+   </div>
+
+   <button
+     type="submit"
+     aria-live="polite"
+     class="w-full bg-gradient-to-r from-purple-700 to-indigo-700 hover:from-purple-800 hover:to-indigo-800 text-white font-semibold py-3 rounded-md uppercase tracking-widest transition focus:outline-none focus:ring-4 focus:ring-purple-400 flex items-center justify-center gap-3 shadow-lg shadow-purple-600/50 text-base"
+   >
+    Cadastrar
+    <svg
+      id="loadingSpinnerMobile"
+      class="w-5 h-5 animate-spin hidden"
+      fill="none"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+     <circle
+       class="opacity-25"
+       cx="12"
+       cy="12"
+       r="10"
+       stroke="currentColor"
+       stroke-width="4"
+     ></circle>
+     <path
+       class="opacity-75"
+       fill="currentColor"
+       d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+     ></path>
+    </svg>
+   </button>
+
+   <div class="flex justify-center mt-6">
+    <a
+      href="index.html"
+      aria-label="Voltar para login"
+      class="w-10 h-10 rounded-full bg-purple-300 hover:bg-purple-400 transition flex items-center justify-center shadow-md"
+      title="Voltar para login"
+    >
+     <i class="fas fa-arrow-left text-purple-900 text-lg"></i>
+    </a>
+   </div>
+  </form>
+
+  <script>
+    // Password toggle desktop
+    const togglePasswordBtn = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("password");
+    togglePasswordBtn.addEventListener("click", () => {
+      const type =
+        passwordInput.getAttribute("type") === "password" ? "text" : "password";
+      passwordInput.setAttribute("type", type);
+      togglePasswordBtn.innerHTML =
+        type === "password"
+          ? '<i class="fas fa-eye"></i>'
+          : '<i class="fas fa-eye-slash"></i>';
+    });
+
+    // Password toggle confirm desktop
+    const toggleConfirmPasswordBtn = document.getElementById("toggleConfirmPassword");
+    const confirmPasswordInput = document.getElementById("confirmPassword");
+    toggleConfirmPasswordBtn.addEventListener("click", () => {
+      const type =
+        confirmPasswordInput.getAttribute("type") === "password"
+          ? "text"
+          : "password";
+      confirmPasswordInput.setAttribute("type", type);
+      toggleConfirmPasswordBtn.innerHTML =
+        type === "password"
+          ? '<i class="fas fa-eye"></i>'
+          : '<i class="fas fa-eye-slash"></i>';
+    });
+
+    // Password toggle mobile
+    const togglePasswordBtnMobile = document.getElementById("togglePasswordMobile");
+    const passwordInputMobile = document.getElementById("passwordMobile");
+    togglePasswordBtnMobile.addEventListener("click", () => {
+      const type =
+        passwordInputMobile.getAttribute("type") === "password"
+          ? "text"
+          : "password";
+      passwordInputMobile.setAttribute("type", type);
+      togglePasswordBtnMobile.innerHTML =
+        type === "password"
+          ? '<i class="fas fa-eye"></i>'
+          : '<i class="fas fa-eye-slash"></i>';
+    });
+
+    // Password toggle confirm mobile
+    const toggleConfirmPasswordBtnMobile = document.getElementById(
+      "toggleConfirmPasswordMobile"
+    );
+    const confirmPasswordInputMobile = document.getElementById(
+      "confirmPasswordMobile"
+    );
+    toggleConfirmPasswordBtnMobile.addEventListener("click", () => {
+      const type =
+        confirmPasswordInputMobile.getAttribute("type") === "password"
+          ? "text"
+          : "password";
+      confirmPasswordInputMobile.setAttribute("type", type);
+      toggleConfirmPasswordBtnMobile.innerHTML =
+        type === "password"
+          ? '<i class="fas fa-eye"></i>'
+          : '<i class="fas fa-eye-slash"></i>';
+    });
+
+    // Email validation helper
+    function validateEmail(email) {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(String(email).toLowerCase());
+    }
+
+    // Form validation and submission simulation desktop
+    const form = document.getElementById("registerForm");
+    const nameInput = form.name;
+    const emailInput = form.email;
+    const passwordInputField = form.password;
+    const confirmPasswordInputField = form.confirmPassword;
+    const nameError = document.getElementById("nameError");
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
+    const confirmPasswordError = document.getElementById("confirmPasswordError");
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const loadingSpinner = document.getElementById("loadingSpinner");
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      nameError.textContent = "";
+      nameError.classList.add("hidden");
+      emailError.textContent = "";
+      emailError.classList.add("hidden");
+      passwordError.textContent = "";
+      passwordError.classList.add("hidden");
+      confirmPasswordError.textContent = "";
+      confirmPasswordError.classList.add("hidden");
+
+      let valid = true;
+
+      if (!nameInput.value.trim()) {
+        nameError.textContent = "O nome completo é obrigatório.";
+        nameError.classList.remove("hidden");
+        valid = false;
+      }
+
+      if (!emailInput.value.trim()) {
+        emailError.textContent = "O email é obrigatório.";
+        emailError.classList.remove("hidden");
+        valid = false;
+      } else if (!validateEmail(emailInput.value.trim())) {
+        emailError.textContent = "Por favor, insira um email válido.";
+        emailError.classList.remove("hidden");
+        valid = false;
+      }
+
+      if (!passwordInputField.value.trim()) {
+        passwordError.textContent = "A senha é obrigatória.";
+        passwordError.classList.remove("hidden");
+        valid = false;
+      } else if (passwordInputField.value.trim().length < 6) {
+        passwordError.textContent = "A senha deve ter ao menos 6 caracteres.";
+        passwordError.classList.remove("hidden");
+        valid = false;
+      }
+
+      if (!confirmPasswordInputField.value.trim()) {
+        confirmPasswordError.textContent = "A confirmação de senha é obrigatória.";
+        confirmPasswordError.classList.remove("hidden");
+        valid = false;
+      } else if (
+        confirmPasswordInputField.value.trim() !== passwordInputField.value.trim()
+      ) {
+        confirmPasswordError.textContent = "As senhas não coincidem.";
+        confirmPasswordError.classList.remove("hidden");
+        valid = false;
+      }
+
+      if (!valid) {
+        return;
+      }
+
+      submitBtn.disabled = true;
+      loadingSpinner.classList.remove("hidden");
+      submitBtn.querySelector("svg").setAttribute("aria-hidden", "false");
+
+      setTimeout(() => {
+        alert(`Cadastro realizado com sucesso! Bem-vindo, ${nameInput.value.trim()}!`);
+        submitBtn.disabled = false;
+        loadingSpinner.classList.add("hidden");
+        submitBtn.querySelector("svg").setAttribute("aria-hidden", "true");
+        form.reset();
+      }, 2000);
+    });
+
+    // Form validation and submission simulation mobile
+    const formMobile = document.getElementById("registerFormMobile");
+    const nameInputMobile = formMobile.nameMobile;
+    const emailInputMobile = formMobile.emailMobile;
+    const passwordInputMobileField = formMobile.passwordMobile;
+    const confirmPasswordInputMobileField = formMobile.confirmPasswordMobile;
+    const nameErrorMobile = document.getElementById("nameErrorMobile");
+    const emailErrorMobile = document.getElementById("emailErrorMobile");
+    const passwordErrorMobile = document.getElementById("passwordErrorMobile");
+    const confirmPasswordErrorMobile = document.getElementById("confirmPasswordErrorMobile");
+    const submitBtnMobile = formMobile.querySelector('button[type="submit"]');
+    const loadingSpinnerMobile = document.getElementById("loadingSpinnerMobile");
+
+    formMobile.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      nameErrorMobile.textContent = "";
+      nameErrorMobile.classList.add("hidden");
+      emailErrorMobile.textContent = "";
+      emailErrorMobile.classList.add("hidden");
+      passwordErrorMobile.textContent = "";
+      passwordErrorMobile.classList.add("hidden");
+      confirmPasswordErrorMobile.textContent = "";
+      confirmPasswordErrorMobile.classList.add("hidden");
+
+      let valid = true;
+
+      if (!nameInputMobile.value.trim()) {
+        nameErrorMobile.textContent = "O nome completo é obrigatório.";
+        nameErrorMobile.classList.remove("hidden");
+        valid = false;
+      }
+
+      if (!emailInputMobile.value.trim()) {
+        emailErrorMobile.textContent = "O email é obrigatório.";
+        emailErrorMobile.classList.remove("hidden");
+        valid = false;
+      } else if (!validateEmail(emailInputMobile.value.trim())) {
+        emailErrorMobile.textContent = "Por favor, insira um email válido.";
+        emailErrorMobile.classList.remove("hidden");
+        valid = false;
+      }
+
+      if (!passwordInputMobileField.value.trim()) {
+        passwordErrorMobile.textContent = "A senha é obrigatória.";
+        passwordErrorMobile.classList.remove("hidden");
+        valid = false;
+      } else if (passwordInputMobileField.value.trim().length < 6) {
+        passwordErrorMobile.textContent = "A senha deve ter ao menos 6 caracteres.";
+        passwordErrorMobile.classList.remove("hidden");
+        valid = false;
+      }
+
+      if (!confirmPasswordInputMobileField.value.trim()) {
+        confirmPasswordErrorMobile.textContent = "A confirmação de senha é obrigatória.";
+        confirmPasswordErrorMobile.classList.remove("hidden");
+        valid = false;
+      } else if (
+        confirmPasswordInputMobileField.value.trim() !==
+        passwordInputMobileField.value.trim()
+      ) {
+        confirmPasswordErrorMobile.textContent = "As senhas não coincidem.";
+        confirmPasswordErrorMobile.classList.remove("hidden");
+        valid = false;
+      }
+
+      if (!valid) {
+        return;
+      }
+
+      submitBtnMobile.disabled = true;
+      loadingSpinnerMobile.classList.remove("hidden");
+      submitBtnMobile.querySelector("svg").setAttribute("aria-hidden", "false");
+
+      setTimeout(() => {
+        alert(
+          `Cadastro realizado com sucesso! Bem-vindo, ${nameInputMobile.value.trim()}!`
+        );
+        submitBtnMobile.disabled = false;
+        loadingSpinnerMobile.classList.add("hidden");
+        submitBtnMobile.querySelector("svg").setAttribute("aria-hidden", "true");
+        formMobile.reset();
+      }, 2000);
+    });
+  </script>
+ </body>
+</html>
