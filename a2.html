@@ -333,6 +333,356 @@
         height: auto !important;
       }
     }
+
+     /* From Uiverse.io by kennyotsu-monochromia */
+    .wrapper {
+      position: fixed;
+      bottom: 120px; /* moved up */
+      right: 120px; /* moved left */
+      width: 60px;
+      height: 60px;
+      --black: #000000;
+      --ch-black: #141414;
+      --eer-black: #1b1b1b;
+      --night-rider: #2e2e2e;
+      --white: #ffffff;
+      --af-white: #f3f3f3;
+      --ch-white: #e1e1e1;
+      z-index: 100;
+    }
+
+    .circle {
+      display: block;
+      position: relative;
+      padding: 0;
+      z-index: 98;
+      margin: 0 auto;
+      box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3);
+      border-radius: 50%;
+      height: 60px;
+      width: 60px;
+      background-color: var(--night-rider);
+      transition: 0.2s;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .circle:active {
+      transform: scale(0.9);
+      box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    .circle:hover {
+      background-color: var(--night-rider);
+      box-shadow: 0 8px 15px 0 rgba(0, 0, 0, 0.3);
+    }
+
+    .circle .svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -15px;
+      margin-top: -15px;
+      width: 30px;
+      height: 30px;
+      transition: 0.5s;
+      transform: rotate(180deg);
+      fill: #d8cfcf;
+    }
+
+    .hidden-trigger {
+      display: none;
+    }
+
+    .hidden-trigger:checked ~ .circle {
+      transform: scale(0.9);
+      background-color: var(--black);
+      box-shadow: 0 8px 15px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .hidden-trigger:checked ~ .circle .svg {
+      transform: rotate(45deg);
+    }
+
+   .subs {
+  left: 0;
+  top: -50px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  z-index: 0;
+  margin: 0 auto;
+  position: relative;
+}
+
+
+    .sub-circle {
+      z-index: 0;
+      position: absolute;
+      height: 40px;
+      width: 40px;
+      overflow: hidden;
+      border-radius: 50%;
+      transition: 0.3s;
+      transform: scale(0.5);
+      opacity: 0;
+      padding: 0;
+      margin: 0;
+      box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3);
+      border: none;
+      background-color: var(--eer-black);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .sub-circle label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      color: #d8cfcf;
+      font-size: 18px;
+      transition: 0.3s;
+      user-select: none;
+    }
+
+.sub-circle:hover {
+  background-color: white;
+  border: 1.5px solid black;
+}
+
+.sub-circle:hover label {
+  color: black;
+}
+
+
+    .hidden-sub-trigger {
+      display: none;
+    }
+
+    .hidden-sub-trigger:checked ~ label {
+      background-color: var(--black);
+      color: #f5f1e9;
+    }
+
+    .hidden-trigger:checked ~ .subs button:nth-of-type(1) {
+      transform: translate(0px, -100px) scale(1);
+      opacity: 1;
+      transition: 0.1s;
+    }
+
+    .hidden-trigger:checked ~ .subs button:nth-of-type(2) {
+      transform: translate(75px, -75px) scale(1);
+      opacity: 1;
+      transition: 0.2s;
+    }
+
+    .hidden-trigger:checked ~ .subs button:nth-of-type(3) {
+      transform: translate(100px, 0px) scale(1);
+      opacity: 1;
+      transition: 0.3s;
+    }
+
+    .hidden-trigger:checked ~ .subs button:nth-of-type(4) {
+      transform: translate(75px, 75px) scale(1);
+      opacity: 1;
+      transition: 0.4s;
+    }
+
+    .hidden-trigger:checked ~ .subs button:nth-of-type(5) {
+      transform: translate(0px, 100px) scale(1);
+      opacity: 1;
+      transition: 0.5s;
+    }
+
+    .hidden-trigger:checked ~ .subs button:nth-of-type(6) {
+      transform: translate(-75px, 75px) scale(1);
+      opacity: 1;
+      transition: 0.6s;
+    }
+
+    .hidden-trigger:checked ~ .subs button:nth-of-type(7) {
+      transform: translate(-100px, 0px) scale(1);
+      opacity: 1;
+      transition: 0.7s;
+    }
+
+    .hidden-trigger:checked ~ .subs button:nth-of-type(8) {
+      transform: translate(-75px, -75px) scale(1);
+      opacity: 1;
+      transition: 0.8s;
+    }
+
+    @media (max-width: 1024px) {
+      .wrapper {
+        bottom: 80px;
+        right: 80px;
+        width: 50px;
+        height: 50px;
+      }
+      .circle {
+        width: 50px;
+        height: 50px;
+      }
+      .circle .svg {
+        width: 25px;
+        height: 25px;
+        margin-left: -12.5px;
+        margin-top: -12.5px;
+      }
+      .subs {
+        width: 34px;
+        height: 34px;
+        top: -42px;
+      }
+      .sub-circle {
+        width: 34px;
+        height: 34px;
+        font-size: 16px;
+      }
+      .sub-circle label {
+        font-size: 16px;
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(1) {
+        transform: translate(0px, -85px) scale(1);
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(2) {
+        transform: translate(65px, -65px) scale(1);
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(3) {
+        transform: translate(85px, 0px) scale(1);
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(4) {
+        transform: translate(65px, 65px) scale(1);
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(5) {
+        transform: translate(0px, 85px) scale(1);
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(6) {
+        transform: translate(-65px, 65px) scale(1);
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(7) {
+        transform: translate(-85px, 0px) scale(1);
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(8) {
+        transform: translate(-65px, -65px) scale(1);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wrapper {
+        bottom: 60px;
+        right: 60px;
+        width: 44px;
+        height: 44px;
+      }
+      .circle {
+        width: 44px;
+        height: 44px;
+      }
+      .circle .svg {
+        width: 22px;
+        height: 22px;
+        margin-left: -11px;
+        margin-top: -11px;
+      }
+      .subs {
+        width: 30px;
+        height: 30px;
+        top: -38px;
+      }
+      .sub-circle {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+      }
+      .sub-circle label {
+        font-size: 14px;
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(1) {
+        transform: translate(0px, -75px) scale(1);
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(2) {
+        transform: translate(55px, -55px) scale(1);
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(3) {
+        transform: translate(70px, 0px) scale(1);
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(4) {
+        transform: translate(55px, 55px) scale(1);
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(5) {
+        transform: translate(0px, 75px) scale(1);
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(6) {
+        transform: translate(-55px, 55px) scale(1);
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(7) {
+        transform: translate(-70px, 0px) scale(1);
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(8) {
+        transform: translate(-55px, -55px) scale(1);
+      }
+    }
+
+    @media (max-width: 400px) {
+      .wrapper {
+        bottom: 60px;
+        right: 50px;
+        width: 36px;
+        height: 36px;
+      }
+      .circle {
+        width: 36px;
+        height: 36px;
+      }
+      .circle .svg {
+        width: 18px;
+        height: 18px;
+        margin-left: -9px;
+        margin-top: -9px;
+      }
+      .subs {
+        width: 24px;
+        height: 24px;
+        top: -30px;
+      }
+      .sub-circle {
+        width: 24px;
+        height: 24px;
+        font-size: 12px;
+      }
+      .sub-circle label {
+        font-size: 12px;
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(1) {
+        transform: translate(0px, -60px) scale(1);
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(2) {
+        transform: translate(45px, -45px) scale(1);
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(3) {
+        transform: translate(60px, 0px) scale(1);
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(4) {
+        transform: translate(45px, 45px) scale(1);
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(5) {
+        transform: translate(0px, 60px) scale(1);
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(6) {
+        transform: translate(-45px, 45px) scale(1);
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(7) {
+        transform: translate(-60px, 0px) scale(1);
+      }
+      .hidden-trigger:checked ~ .subs button:nth-of-type(8) {
+        transform: translate(-45px, -45px) scale(1);
+      }
+    }
   </style>
  </head>
  <body class="min-h-screen bg-[#0a0a14] text-white">
@@ -652,6 +1002,127 @@
    </div>
   </div>
   
+<!-- Floating circular button with sub-buttons -->
+  <div class="wrapper" aria-label="Floating action button with sub options">
+    <input type="checkbox" id="toogle" class="hidden-trigger" aria-label="Toggle floating menu" />
+    <label for="toogle" class="circle" tabindex="0" role="button" aria-pressed="false">
+      <svg
+        class="svg"
+        xmlns="http://www.w3.org/2000/svg"
+        width="48"
+        height="48"
+        viewBox="0 0 48 48"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path
+          fill="currentColor"
+          d="M24 4a20 20 0 1 0 20 20A20.023 20.023 0 0 0 24 4Zm0 36a16 16 0 1 1 16-16 16.019 16.019 0 0 1-16 16Z"
+        />
+      </svg>
+    </label>
+
+    <div class="subs" role="menu" aria-label="Floating menu options">
+      <button class="sub-circle" role="menuitem" aria-label="Contact via Email">
+        <input
+          value="email"
+          name="sub-circle"
+          type="radio"
+          id="sub1"
+          class="hidden-sub-trigger"
+        />
+        <label for="sub1" tabindex="0">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+        </label>
+      </button>
+      <button class="sub-circle" role="menuitem" aria-label="Call Phone">
+        <input
+          value="phone"
+          name="sub-circle"
+          type="radio"
+          id="sub2"
+          class="hidden-sub-trigger"
+        />
+        <label for="sub2" tabindex="0">
+          <i class="fas fa-phone-alt" aria-hidden="true"></i>
+        </label>
+      </button>
+      <button class="sub-circle" role="menuitem" aria-label="LinkedIn Profile">
+        <input
+          value="linkedin"
+          name="sub-circle"
+          type="radio"
+          id="sub3"
+          class="hidden-sub-trigger"
+        />
+        <label for="sub3" tabindex="0">
+          <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+        </label>
+      </button>
+      <button class="sub-circle" role="menuitem" aria-label="Instagram Profile">
+        <input
+          value="instagram"
+          name="sub-circle"
+          type="radio"
+          id="sub4"
+          class="hidden-sub-trigger"
+        />
+        <label for="sub4" tabindex="0">
+          <i class="fab fa-instagram" aria-hidden="true"></i>
+        </label>
+      </button>
+      <button class="sub-circle" role="menuitem" aria-label="Facebook Profile">
+        <input
+          value="facebook"
+          name="sub-circle"
+          type="radio"
+          id="sub5"
+          class="hidden-sub-trigger"
+        />
+        <label for="sub5" tabindex="0">
+          <i class="fab fa-facebook-f" aria-hidden="true"></i>
+        </label>
+      </button>
+      <button class="sub-circle" role="menuitem" aria-label="Legal Consultation">
+        <input
+          value="consult"
+          name="sub-circle"
+          type="radio"
+          id="sub6"
+          class="hidden-sub-trigger"
+        />
+        <label for="sub6" tabindex="0">
+          <i class="fas fa-gavel" aria-hidden="true"></i>
+        </label>
+      </button>
+      <button class="sub-circle" role="menuitem" aria-label="Risk Management">
+        <input
+          value="risk"
+          name="sub-circle"
+          type="radio"
+          id="sub7"
+          class="hidden-sub-trigger"
+        />
+        <label for="sub7" tabindex="0">
+          <i class="fas fa-shield-alt" aria-hidden="true"></i>
+        </label>
+      </button>
+      <button class="sub-circle" role="menuitem" aria-label="Workshops">
+        <input
+          value="workshops"
+          name="sub-circle"
+          type="radio"
+          id="sub8"
+          class="hidden-sub-trigger"
+        />
+        <label for="sub8" tabindex="0">
+          <i class="fas fa-chalkboard-teacher" aria-hidden="true"></i>
+        </label>
+      </button>
+    </div>
+  </div>
+
+
   <script>
 
 (() => {
