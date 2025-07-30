@@ -1,20 +1,20 @@
 <html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1" name="viewport" />
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
   <title>
-    Prometeus Advogados
+   Prometeus Advogados
   </title>
   <script src="https://cdn.tailwindcss.com">
   </script>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&amp;family=Open+Sans&amp;display=swap"
-    rel="stylesheet" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400&amp;family=Open+Sans&amp;family=Merriweather:ital,wght@1,400&amp;display=swap" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
   <style>
-    body {
+   body {
       font-family: "Open Sans", sans-serif;
       background-color: #0a0a14;
+      margin: 0;
+      padding: 0;
     }
 
     .font-title {
@@ -68,203 +68,471 @@
       animation-delay: 0.7s;
     }
 
-    .container {
-      width: 100vw;
-      height: 100vh;
-      --s: 84px;
-      --c1: #1a1a1a;
-      /* very dark gray */
-      --c2: #333333;
-      /* dark gray */
-      --c3: #4d4d4d;
-      /* medium dark gray */
+    nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #0a0a14;
+      display: flex;
+      justify-content: center;
+      padding: 0.75rem 1.5rem;
+      z-index: 60;
+      user-select: none;
+      box-sizing: border-box;
+      
+    }
 
-      --_g: 0 120deg, #0000 0;
-      background: conic-gradient(from 0deg at calc(500% / 6) calc(100% / 3),
-          var(--c3) var(--_g)),
-        conic-gradient(from -120deg at calc(100% / 6) calc(100% / 3),
-          var(--c2) var(--_g)),
-        conic-gradient(from 120deg at calc(100% / 3) calc(500% / 6),
-          var(--c1) var(--_g)),
-        conic-gradient(from 120deg at calc(200% / 3) calc(500% / 6),
-          var(--c1) var(--_g)),
-        conic-gradient(from -180deg at calc(100% / 3) 50%,
-          var(--c2) 60deg,
-          var(--c1) var(--_g)),
-        conic-gradient(from 60deg at calc(200% / 3) 50%,
-          var(--c1) 60deg,
-          var(--c3) var(--_g)),
-        conic-gradient(from -60deg at 50% calc(100% / 3),
-          var(--c1) 120deg,
-          var(--c2) 0 240deg,
-          var(--c3) 0);
-      background-size: calc(var(--s) * 1.732) var(--s);
-      background-repeat: repeat;
+    nav .nav-container {
+      max-width: 700px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    nav img.logo {
+      width: 5rem;
+      height: 5rem;
+      flex-shrink: 0;
+    }
+
+    nav a.nav-link {
+      position: relative;
+      padding-bottom: 4px;
+      color: #d8cfcf;
+      transition: color 0.3s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    nav a.nav-link::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #d8cfcf;
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    nav a.nav-link:hover,
+    nav a.nav-link:focus {
+      color: #f5f1e9;
+      outline: none;
+    }
+
+    nav a.nav-link:hover::after,
+    nav a.nav-link:focus::after {
+      width: 100%;
+    }
+
+    nav span.separator {
+      color: #555555;
+      user-select: none;
+      font-weight: 400;
+    }
+
+    nav .social-icons {
+      display: flex;
+      gap: 1rem;
+      margin-left: 2rem;
+    }
+
+    nav .social-icons a {
+      color: #d8cfcf;
+      font-size: 1.25rem;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    nav .social-icons a:hover,
+    nav .social-icons a:focus {
+      color: #f5f1e9;
+      outline: none;
+    }
+
+    /* Hamburger menu styles */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 28px;
+      height: 22px;
+      cursor: pointer;
+      z-index: 70;
+    }
+
+    .hamburger div {
+      width: 28px;
+      height: 3px;
+      background-color: #d8cfcf;
+      border-radius: 2px;
+      transition: all 0.4s ease;
+      transform-origin: 1px;
+    }
+
+    .hamburger.open div:nth-child(1) {
+      transform: rotate(45deg);
+    }
+
+    .hamburger.open div:nth-child(2) {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+
+    .hamburger.open div:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background-color: #0a0a14;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      z-index: 50;
+    }
+
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .mobile-menu a {
+      color: #d8cfcf;
+      font-size: 1.5rem;
+      font-weight: 600;
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 6px;
+      transition: color 0.3s ease;
+    }
+
+    .mobile-menu a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #d8cfcf;
+      transition: width 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .mobile-menu a:hover,
+    .mobile-menu a:focus {
+      color: #f5f1e9;
+      outline: none;
+    }
+
+    .mobile-menu a:hover::after,
+    .mobile-menu a:focus::after {
+      width: 100%;
+    }
+
+    .mobile-menu .social-icons {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .mobile-menu .social-icons a {
+      font-size: 1.75rem;
+      color: #d8cfcf;
+      transition: color 0.3s ease;
+    }
+
+    .mobile-menu .social-icons a:hover,
+    .mobile-menu .social-icons a:focus {
+      color: #f5f1e9;
+      outline: none;
+    }
+
+    /* Adjust content top padding to avoid overlap with fixed navbar */
+    .content-wrapper {
+      padding-top: 5.5rem;
+    }
+
+    @media (max-width: 768px) {
+      nav .nav-container {
+        max-width: 100%;
+        gap: 1rem;
+        justify-content: center;
+        
+      }
+      nav a.nav-link,
+      nav span.separator,
+      nav .social-icons {
+        display: none;
+      }
+      nav img.logo {
+        margin: 0 auto;
+      }
+      .hamburger {
+        display: flex;
+        margin-left: 190px;
+      }
     }
   </style>
-</head>
+ </head>
+ <body class="min-h-screen bg-[#0a0a14] text-white">
+  <nav aria-label="Primary Navigation" role="navigation">
+   <div class="nav-container">
+    <img alt="Logo letter R in beige on dark background, stylized and modern" class="logo" height="80" src="IMG_8732-removebg-preview.png" width="80"/>
+    <a class="nav-link" href="loginPA.html" tabindex="0">
+     HOME
+    </a>
+    <span aria-hidden="true" class="separator">
+     |
+    </span>
+    <a class="nav-link" href="#" tabindex="0">
+     PAGE
+    </a>
+    <span aria-hidden="true" class="separator">
+     |
+    </span>
+    <a class="nav-link" href="#" tabindex="0">
+     ABOUT
+    </a>
+    <div aria-label="Social media links" class="social-icons">
+     <a aria-label="LinkedIn" href="https://www.linkedin.com" rel="noopener noreferrer" tabindex="0" target="_blank">
+      <i class="fab fa-linkedin-in">
+      </i>
+     </a>
+     <a aria-label="Instagram" href="https://www.instagram.com" rel="noopener noreferrer" tabindex="0" target="_blank">
+      <i class="fab fa-instagram">
+      </i>
+     </a>
+     <a aria-label="Facebook" href="https://www.facebook.com" rel="noopener noreferrer" tabindex="0" target="_blank">
+      <i class="fab fa-facebook-f">
+      </i>
+     </a>
+     <a aria-label="Email" href="mailto:contato@prometeusadvogados.com" tabindex="0">
+      <i class="fas fa-envelope">
+      </i>
+     </a>
+     <a aria-label="Phone" href="tel:+5511999999999" tabindex="0">
+      <i class="fas fa-phone-alt">
+      </i>
+     </a>
+    </div>
+    <div aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle menu" class="hamburger" id="hamburger" role="button" tabindex="0">
+     <div>
+     </div>
+     <div>
+     </div>
+     <div>
+     </div>
+    </div>
+   </div>
+  </nav>
 
-<body class="min-h-screen bg-[#0a0a14] text-white">
-  <div class="w-full flex flex-col md:flex-row p-0">
-    <!-- Lado esquerdo -->
-    <div class="w-full md:w-1/2 flex flex-col justify-start p-6 md:p-12 mb-12">
-      <nav class="flex items-center space-x-6 mb-12 mt-2 text-sm md:text-base font-semibold fade-in-up delay-100">
-        <img alt="Logo letter R in beige on dark background, stylized and modern"
-          class="w-20 h-20 md:w-28 md:h-28 flex-shrink-0" height="112" src="IMG_8732-removebg-preview.png"
-          width="112" />
-        <a class="hover:underline" href="loginPA.html">
-          HOME
-        </a>
-        <span>
-          |
-        </span>
-        <a class="hover:underline" href="#">
-          PAGE
-        </a>
-        <span>
-          |
-        </span>
-        <a class="hover:underline" href="#">
-          ABOUT
-        </a>
-      </nav>
-      <h1 class="font-title text-4xl md:text-[48px] leading-tight md:leading-[56px] mb-4 fade-in-up delay-200">
-        PROMETEUS
-        <br />
-        ADVOGADOS
-      </h1>
-      <p class="font-serif text-lg mb-6 italic fade-in-up delay-300">
-        Excelência e Inovação.
-      </p>
-      <p class="text-sm max-w-xl mb-10 leading-relaxed fade-in-up delay-400">
-        Na Prometeus Advogados, cada solução é arquitetada em sua complexidade
-        única. Nossa defesa exata antecipa riscos e edifica segurança com
-        lógica, visão e ética.
-      </p>
-      <button
-        class="w-max px-6 py-2 border border-white rounded-md text-white text-base font-normal hover:bg-white hover:text-[#0a0a14] transition-colors duration-300 fade-in-up delay-500">
-        Conheça a Prometeus
-      </button>
-    </div>
-    <!-- Lado direito (imagem ajustada) - hidden on mobile -->
-    <div class="hidden md:block w-full md:w-1/2 m-0 p-0 fade-in-up delay-600">
-      <img alt="Dark background with thin abstract curved lines in beige color, elegant and minimalistic"
-        class="w-full h-64 md:h-[720px] object-cover" height="720" src="Captura de tela 2025-07-28 012038.png"
-        width="720" />
-    </div>
+
+ <div class="content-wrapper w-full flex flex-col md:flex-row p-0 mt-[80px]">
+
+   <!-- Left side -->
+   <div class="w-full md:w-1/2 flex flex-col justify-center items-center p-6 md:p-12 mb-12 text-center md:text-left">
+    <h1 class="font-title text-4xl md:text-[48px] leading-tight md:leading-[56px] mb-4 fade-in-up delay-200 whitespace-nowrap">
+     PROMETEUS ADVOGADOS
+    </h1>
+    <p class="font-serif text-lg mb-6 italic fade-in-up delay-300">
+     Excelência e Inovação.
+    </p>
+    <p class="text-sm max-w-xl mb-10 leading-relaxed fade-in-up delay-400 mx-auto md:mx-0">
+     Na Prometeus Advogados, cada solução é arquitetada em sua complexidade
+     única. Nossa defesa exata antecipa riscos e edifica segurança com lógica,
+     visão e ética.
+    </p>
+    <button class="w-max px-6 py-2 border border-white rounded-md text-white text-base font-normal hover:bg-white hover:text-[#0a0a14] transition-colors duration-300 fade-in-up delay-500">
+     Conheça a Prometeus
+    </button>
+   </div>
+   <!-- Right side image - hidden on mobile -->
+   <div class="hidden md:block w-full md:w-1/2 mt-10 p-0 fade-in-up delay-600">
+    <img alt="Dark background with thin abstract curved lines in beige color, elegant and minimalistic" class="w-full max-w-[480px] h-auto mx-auto" height="360" src="c08fa499-7b7b-47a4-a9c8-a1a3a0e25dab-removebg-preview.png" width="480"/>
+   </div>
   </div>
-  <!-- Profissionais Section -->
+  <!-- Mobile menu -->
+  <div aria-hidden="true" class="mobile-menu" id="mobile-menu" role="menu" tabindex="-1">
+   <a href="loginPA.html" role="menuitem" tabindex="-1">
+    HOME
+   </a>
+   <a href="#" role="menuitem" tabindex="-1">
+    PAGE
+   </a>
+   <a href="#" role="menuitem" tabindex="-1">
+    ABOUT
+   </a>
+   <div aria-label="Social media links" class="social-icons">
+    <a aria-label="LinkedIn" href="https://www.linkedin.com" rel="noopener noreferrer" tabindex="-1" target="_blank">
+     <i class="fab fa-linkedin-in">
+     </i>
+    </a>
+    <a aria-label="Instagram" href="https://www.instagram.com" rel="noopener noreferrer" tabindex="-1" target="_blank">
+     <i class="fab fa-instagram">
+     </i>
+    </a>
+    <a aria-label="Facebook" href="https://www.facebook.com" rel="noopener noreferrer" tabindex="-1" target="_blank">
+     <i class="fab fa-facebook-f">
+     </i>
+    </a>
+    <a aria-label="Email" href="mailto:contato@prometeusadvogados.com" tabindex="-1">
+     <i class="fas fa-envelope">
+     </i>
+    </a>
+    <a aria-label="Phone" href="tel:+5511999999999" tabindex="-1">
+     <i class="fas fa-phone-alt">
+     </i>
+    </a>
+   </div>
+  </div>
+  
+  <!-- Professionals Section -->
   <section class="max-w-7xl mx-auto px-6 md:px-12 py-16">
-    <h2 class="font-title text-3xl md:text-4xl text-white mb-12 text-center fade-in-up delay-100">
-      Nossa Equipe de Profissionais
-    </h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 fade-in-up delay-200">
-      <!-- Professional 1 -->
-      <div
-        class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
-        <img alt="Portrait of a confident male lawyer in a dark suit with crossed arms, professional office background"
-          class="w-40 h-40 rounded-full object-cover mb-6" height="200"
-          src="https://storage.googleapis.com/a1aa/image/198892c6-fd79-4d64-ac99-5a6cea0da9e7.jpg" width="200" />
-        <h3 class="font-title text-xl mb-1">
-          Dr. Rafael Silva
-        </h3>
-        <p class="text-sm italic text-gray-300 mb-3">
-          Especialista em Direito Civil
-        </p>
-        <p class="text-sm text-gray-400">
-          Com mais de 15 anos de experiência, Rafael é conhecido por sua
-          abordagem estratégica e ética impecável.
-        </p>
-      </div>
-      <!-- Professional 2 -->
-      <div
-        class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
-        <img
-          alt="Portrait of a professional female lawyer with glasses, smiling, wearing a navy blue blazer, modern law office background"
-          class="w-40 h-40 rounded-full object-cover mb-6" height="200"
-          src="https://storage.googleapis.com/a1aa/image/c5f5ee2c-465f-4fef-2af0-5fa637a9bb11.jpg" width="200" />
-        <h3 class="font-title text-xl mb-1">
-          Dra. Mariana Costa
-        </h3>
-        <p class="text-sm italic text-gray-300 mb-3">
-          Especialista em Direito Empresarial
-        </p>
-        <p class="text-sm text-gray-400">
-          Mariana traz inovação e visão moderna para a defesa dos interesses
-          empresariais de nossos clientes.
-        </p>
-      </div>
-      <!-- Professional 3 -->
-      <div
-        class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
-        <img
-          alt="Portrait of a middle-aged male lawyer with beard, wearing a gray suit and tie, confident expression, law books in background"
-          class="w-40 h-40 rounded-full object-cover mb-6" height="200"
-          src="https://storage.googleapis.com/a1aa/image/cea9f6ac-fb6c-4247-057b-5c2c09394cee.jpg" width="200" />
-        <h3 class="font-title text-xl mb-1">
-          Dr. Lucas Almeida
-        </h3>
-        <p class="text-sm italic text-gray-300 mb-3">
-          Especialista em Direito Trabalhista
-        </p>
-        <p class="text-sm text-gray-400">
-          Lucas é dedicado a garantir justiça e proteção para trabalhadores e
-          empregadores.
-        </p>
-      </div>
-      <!-- Professional 4 -->
-      <div
-        class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
-        <img
-          alt="Portrait of a young female lawyer with curly hair, wearing a white blouse and black blazer, bright office background"
-          class="w-40 h-40 rounded-full object-cover mb-6" height="200"
-          src="https://storage.googleapis.com/a1aa/image/37f964a0-a968-4f35-6636-92d615f2c465.jpg" width="200" />
-        <h3 class="font-title text-xl mb-1">
-          Dra. Ana Beatriz
-        </h3>
-        <p class="text-sm italic text-gray-300 mb-3">
-          Especialista em Direito Ambiental
-        </p>
-        <p class="text-sm text-gray-400">
-          Ana Beatriz é apaixonada por sustentabilidade e defesa do meio ambiente.
-        </p>
-      </div>
-      <!-- Professional 5 -->
-      <div
-        class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
-        <img
-          alt="Portrait of a senior male lawyer with glasses, gray hair, wearing a dark suit and tie, serious expression, law firm background"
-          class="w-40 h-40 rounded-full object-cover mb-6" height="200"
-          src="https://storage.googleapis.com/a1aa/image/4b905dcb-ce79-4414-7482-3627e4fab0ca.jpg" width="200" />
-        <h3 class="font-title text-xl mb-1">
-          Dr. Eduardo Martins
-        </h3>
-        <p class="text-sm italic text-gray-300 mb-3">
-          Especialista em Direito Penal
-        </p>
-        <p class="text-sm text-gray-400">
-          Eduardo é um defensor incansável da justiça criminal com vasta experiência.
-        </p>
-      </div>
-      <!-- Professional 6 -->
-      <div
-        class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
-        <img
-          alt="Portrait of a confident female lawyer with straight hair, wearing a red blouse and black blazer, modern office background"
-          class="w-40 h-40 rounded-full object-cover mb-6" height="200"
-          src="https://storage.googleapis.com/a1aa/image/d2fbf0e8-354f-4acc-e2be-c4cbe769b948.jpg" width="200" />
-        <h3 class="font-title text-xl mb-1">
-          Dra. Camila Ferreira
-        </h3>
-        <p class="text-sm italic text-gray-300 mb-3">
-          Especialista em Direito Tributário
-        </p>
-        <p class="text-sm text-gray-400">
-          Camila oferece soluções inteligentes para questões fiscais complexas.
-        </p>
-      </div>
+   <h2 class="font-title text-3xl md:text-4xl text-white mb-12 text-center fade-in-up delay-100">
+    Nossa Equipe de Profissionais
+   </h2>
+   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 fade-in-up delay-200">
+    <div class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
+     <img alt="Portrait of a confident male lawyer in a dark suit with crossed arms, professional office background" class="w-40 h-40 rounded-full object-cover mb-6" height="200" src="https://storage.googleapis.com/a1aa/image/face89f8-1418-4a93-c2af-a8ec2fae6111.jpg" width="200"/>
+     <h3 class="font-title text-xl mb-1">
+      Dr. Rafael Silva
+     </h3>
+     <p class="text-sm italic text-gray-300 mb-3">
+      Especialista em Direito Civil
+     </p>
+     <p class="text-sm text-gray-400">
+      Com mais de 15 anos de experiência, Rafael é conhecido por sua abordagem
+      estratégica e ética impecável.
+     </p>
     </div>
+    <div class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
+     <img alt="Portrait of a professional female lawyer with glasses, smiling, wearing a navy blue blazer, modern law office background" class="w-40 h-40 rounded-full object-cover mb-6" height="200" src="https://storage.googleapis.com/a1aa/image/841bed56-60c3-4f20-d449-0e2201931690.jpg" width="200"/>
+     <h3 class="font-title text-xl mb-1">
+      Dra. Mariana Costa
+     </h3>
+     <p class="text-sm italic text-gray-300 mb-3">
+      Especialista em Direito Empresarial
+     </p>
+     <p class="text-sm text-gray-400">
+      Mariana traz inovação e visão moderna para a defesa dos interesses
+      empresariais de nossos clientes.
+     </p>
+    </div>
+    <div class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
+     <img alt="Portrait of a middle-aged male lawyer with beard, wearing a gray suit and tie, confident expression, law books in background" class="w-40 h-40 rounded-full object-cover mb-6" height="200" src="https://storage.googleapis.com/a1aa/image/a8a04f86-9602-4604-08eb-b6e4f765eeb3.jpg" width="200"/>
+     <h3 class="font-title text-xl mb-1">
+      Dr. Lucas Almeida
+     </h3>
+     <p class="text-sm italic text-gray-300 mb-3">
+      Especialista em Direito Trabalhista
+     </p>
+     <p class="text-sm text-gray-400">
+      Lucas é dedicado a garantir justiça e proteção para trabalhadores e
+      empregadores.
+     </p>
+    </div>
+    <div class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
+     <img alt="Portrait of a young female lawyer with curly hair, wearing a white blouse and black blazer, bright office background" class="w-40 h-40 rounded-full object-cover mb-6" height="200" src="https://storage.googleapis.com/a1aa/image/445c6ce4-078b-46fe-a76b-21f4315ce359.jpg" width="200"/>
+     <h3 class="font-title text-xl mb-1">
+      Dra. Ana Beatriz
+     </h3>
+     <p class="text-sm italic text-gray-300 mb-3">
+      Especialista em Direito Ambiental
+     </p>
+     <p class="text-sm text-gray-400">
+      Ana Beatriz é apaixonada por sustentabilidade e defesa do meio ambiente.
+     </p>
+    </div>
+    <div class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
+     <img alt="Portrait of a senior male lawyer with glasses, gray hair, wearing a dark suit and tie, serious expression, law firm background" class="w-40 h-40 rounded-full object-cover mb-6" height="200" src="https://storage.googleapis.com/a1aa/image/2aeeb66e-16f5-45ea-5139-9f93e2a5f0eb.jpg" width="200"/>
+     <h3 class="font-title text-xl mb-1">
+      Dr. Eduardo Martins
+     </h3>
+     <p class="text-sm italic text-gray-300 mb-3">
+      Especialista em Direito Penal
+     </p>
+     <p class="text-sm text-gray-400">
+      Eduardo é um defensor incansável da justiça criminal com vasta experiência.
+     </p>
+    </div>
+    <div class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
+     <img alt="Portrait of a confident female lawyer with straight hair, wearing a red blouse and black blazer, modern office background" class="w-40 h-40 rounded-full object-cover mb-6" height="200" src="https://storage.googleapis.com/a1aa/image/1b1f20b7-7d62-4381-a457-1a363b33a367.jpg" width="200"/>
+     <h3 class="font-title text-xl mb-1">
+      Dra. Camila Ferreira
+     </h3>
+     <p class="text-sm italic text-gray-300 mb-3">
+      Especialista em Direito Tributário
+     </p>
+     <p class="text-sm text-gray-400">
+      Camila oferece soluções inteligentes para questões fiscais complexas.
+     </p>
+    </div>
+   </div>
   </section>
-</body>
+  <script>
+   const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobile-menu");
 
+    function toggleMenu() {
+      const isOpen = hamburger.classList.toggle("open");
+      mobileMenu.classList.toggle("open");
+      hamburger.setAttribute("aria-expanded", isOpen);
+      if (isOpen) {
+        mobileMenu.setAttribute("aria-hidden", "false");
+        mobileMenu.querySelectorAll("a").forEach((a) => (a.tabIndex = 0));
+        // Trap focus inside mobile menu
+        mobileMenu.focus();
+      } else {
+        mobileMenu.setAttribute("aria-hidden", "true");
+        mobileMenu.querySelectorAll("a").forEach((a) => (a.tabIndex = -1));
+        hamburger.focus();
+      }
+    }
+
+    hamburger.addEventListener("click", toggleMenu);
+    hamburger.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+        e.preventDefault();
+        toggleMenu();
+      }
+    });
+
+    // Close menu on link click
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        hamburger.classList.remove("open");
+        mobileMenu.classList.remove("open");
+        hamburger.setAttribute("aria-expanded", "false");
+        mobileMenu.setAttribute("aria-hidden", "true");
+        mobileMenu.querySelectorAll("a").forEach((a) => (a.tabIndex = -1));
+        hamburger.focus();
+      });
+    });
+
+    // Initialize mobile menu links tabindex to -1 (hidden)
+    mobileMenu.querySelectorAll("a").forEach((a) => (a.tabIndex = -1));
+  </script>
+ </body>
 </html>
