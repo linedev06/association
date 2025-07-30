@@ -154,48 +154,50 @@
         </div>
 
         <!-- Password Field -->
-        <div class="relative">
-          <input
-            type="password"
-            id="password"
-            name="password"
-            required
-            placeholder="Senha"
-            class="w-full rounded-lg bg-white text-[#111111] placeholder-gray-400 px-4 py-3 pr-12 shadow-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-opacity-70 transition"
-            autocomplete="new-password"
-          />
-          <button
-            type="button"
-            aria-label="Toggle password visibility"
-            class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-700 focus:outline-none"
-            onclick="const p = document.getElementById('password'); if(p.type==='password'){p.type='text'; this.innerHTML='<i class=\'fas fa-eye-slash\'></i>';}else{p.type='password'; this.innerHTML='<i class=\'fas fa-eye\'></i>';}"
-            tabindex="-1"
-          >
-            <i class="fas fa-eye"></i>
-          </button>
-        </div>
+       <!-- Campo de senha -->
+<div class="relative">
+  <input
+    type="password"
+    id="password"
+    name="password"
+    required
+    placeholder="Senha"
+    class="w-full rounded-lg bg-white text-[#111111] placeholder-gray-400 px-4 py-3 pr-12 shadow-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-opacity-70 transition"
+    autocomplete="new-password"
+  />
+  <button
+    type="button"
+    aria-label="Toggle password visibility"
+    class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-700 focus:outline-none"
+    onclick="togglePassword(this, 'password')"
+  >
+    <i class="fas fa-eye"></i>
+  </button>
+</div>
 
-        <!-- Confirm Password Field -->
-        <div class="relative">
-          <input
-            type="password"
-            id="confirm_password"
-            name="confirm_password"
-            required
-            placeholder="Confirmar senha"
-            class="w-full rounded-lg bg-white text-[#111111] placeholder-gray-400 px-4 py-3 pr-12 shadow-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-opacity-70 transition"
-            autocomplete="new-password"
-          />
-          <button
-            type="button"
-            aria-label="Toggle confirm password visibility"
-            class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-700 focus:outline-none"
-            onclick="const p = document.getElementById('confirm_password'); if(p.type==='password'){p.type='text'; this.innerHTML='<i class=\'fas fa-eye-slash\'></i>';}else{p.type='password'; this.innerHTML='<i class=\'fas fa-eye\'></i>';}"
-            tabindex="-1"
-          >
-            <i class="fas fa-eye"></i>
-          </button>
-        </div>
+<!-- Campo de confirmar senha -->
+<div class="relative">
+  <input
+    type="password"
+    id="confirm_password"
+    name="confirm_password"
+    required
+    placeholder="Confirmar senha"
+    class="w-full rounded-lg bg-white text-[#111111] placeholder-gray-400 px-4 py-3 pr-12 shadow-sm border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-opacity-70 transition"
+    autocomplete="new-password"
+  />
+  <button
+    type="button"
+    aria-label="Toggle confirm password visibility"
+    class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-700 focus:outline-none"
+    onclick="togglePassword(this, 'confirm_password')"
+  >
+    <i class="fas fa-eye"></i>
+  </button>
+</div>
+
+
+
 
         <!-- Terms Checkbox -->
         <div class="flex items-center space-x-2 text-gray-600 text-sm select-none cursor-pointer">
@@ -241,3 +243,15 @@
   </div>
 </body>
 </html>
+
+<script>
+  function togglePassword(button, inputId) {
+    const input = document.getElementById(inputId);
+    const icon = button.querySelector('i');
+    const isHidden = input.type === 'password';
+
+    input.type = isHidden ? 'text' : 'password';
+    icon.classList.toggle('fa-eye');
+    icon.classList.toggle('fa-eye-slash');
+  }
+</script>

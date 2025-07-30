@@ -73,14 +73,13 @@
       top: 0;
       left: 0;
       width: 100%;
-       background-color: transparent;
+      background-color: transparent;
       display: flex;
       justify-content: center;
       padding: 0.75rem 1.5rem;
       z-index: 60;
       user-select: none;
       box-sizing: border-box;
-      
     }
 
     nav .nav-container {
@@ -98,7 +97,7 @@
       width: 150px;
       height: 150px;
       flex-shrink: 0;
-      margin-right: 450px;
+      margin-right: 250px;
       margin-left: -100px;
     }
 
@@ -142,8 +141,8 @@
 
     nav .social-icons {
       display: flex;
-      gap: 1rem;
-      margin-left: 2rem;
+      gap: 2rem;
+      margin-left: 13rem;
     }
 
     nav .social-icons a {
@@ -281,7 +280,6 @@
         max-width: 100%;
         gap: 1rem;
         justify-content: center;
-        
       }
       nav a.nav-link,
       nav span.separator,
@@ -299,6 +297,41 @@
         margin-left: 220px;
         margin-right: 20px;
       }
+      /* Fix text layout on mobile */
+      .content-wrapper {
+        flex-direction: column;
+        padding-top: 5.5rem;
+        margin-left: 0 !important;
+      }
+      .content-wrapper > div:first-child {
+        margin-left: 0 !important;
+        padding: 1.5rem 1.5rem 3rem 1.5rem;
+        text-align: center;
+      }
+      .content-wrapper > div:first-child h1 {
+        white-space: normal !important;
+        font-size: 2.5rem !important;
+        line-height: 1.2 !important;
+      }
+      .content-wrapper > div:first-child p {
+        max-width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        font-size: 1rem !important;
+      }
+      .content-wrapper > div:first-child button {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .content-wrapper > div:last-child {
+        margin-top: 2rem;
+        width: 100% !important;
+        padding: 0 1.5rem;
+      }
+      .content-wrapper > div:last-child img {
+        max-width: 100% !important;
+        height: auto !important;
+      }
     }
   </style>
  </head>
@@ -307,19 +340,19 @@
    <div class="nav-container">
     <img alt="Logo letter R in beige on dark background, stylized and modern" class="logo" height="80" src="IMG_8732-removebg-preview.png" width="80"/>
     <a class="nav-link" href="loginPA.html" tabindex="0">
-     HOME
+     Home
     </a>
     <span aria-hidden="true" class="separator">
      |
     </span>
     <a class="nav-link" href="#" tabindex="0">
-     PAGE
+     Page
     </a>
     <span aria-hidden="true" class="separator">
      |
     </span>
     <a class="nav-link" href="#" tabindex="0">
-     ABOUT
+     About
     </a>
     <div aria-label="Social media links" class="social-icons">
      <a aria-label="LinkedIn" href="https://www.linkedin.com" rel="noopener noreferrer" tabindex="0" target="_blank">
@@ -353,38 +386,37 @@
     </div>
    </div>
   </nav>
-
-
- <div class="content-wrapper w-full flex flex-col md:flex-row p-0 mt-[80px]">
-
+  <div style="margin-top: 200px;">
+  </div>
+  <div class="content-wrapper w-full flex flex-col md:flex-row p-0 mt-[80px]">
    <!-- Left side -->
-   <div class="w-full md:w-1/2 flex flex-col justify-center items-center p-6 md:p-12 mb-12 text-center md:text-left">
+   <div class="ml-[480px] w-full md:w-1/2 flex flex-col justify-center items-center p-6 md:p-12 mb-12 text-center md:text-left">
     <h1 class="font-title text-4xl md:text-[48px] leading-tight md:leading-[56px] mb-4 fade-in-up delay-200 whitespace-nowrap">
      PROMETEUS ADVOGADOS
     </h1>
     <p class="font-serif text-lg mb-6 italic fade-in-up delay-300">
      Excelência e Inovação.
     </p>
-    <p class="text-sm max-w-xl mb-10 leading-relaxed fade-in-up delay-400 mx-auto md:mx-0">
-     Na Prometeus Advogados, cada solução é arquitetada em sua complexidade
-     única. Nossa defesa exata antecipa riscos e edifica segurança com lógica,
-     visão e ética.
-    </p>
+  <p class="text-base max-w-xl mb-3 leading-relaxed fade-in-up delay-400 mx-auto md:ml-[0px]">
+  Na Prometeus Advogados, cada solução é arquitetada em sua complexidade
+  única. Nossa defesa exata antecipa riscos e edifica segurança com
+  lógica, visão e ética.
+</p>
+<p class="text-base max-w-xl mb-10 leading-relaxed fade-in-up delay-400 mx-auto md:ml-[0px]">
+  Do risco à resolução, unimos inteligência artificial, automação e
+  segurança blockchain para tornar sua gestão jurídica mais ágil,
+  estratégica e à prova do futuro. Inove com Athena, Kleos, Parthenon,
+  Thémis, Pandora e Khartēs — uma nova era da advocacia começa aqui.
+</p>
+
     <button class="w-max px-6 py-2 border border-white rounded-md text-white text-base font-normal hover:bg-white hover:text-[#0a0a14] transition-colors duration-300 fade-in-up delay-500">
      Conheça a Prometeus
     </button>
    </div>
    <!-- Right side image - hidden on mobile -->
    <div class="hidden md:block w-full md:w-1/2 mt-10 p-0 fade-in-up delay-600 relative z-10">
-  <img
-    alt="Dark background with thin abstract curved lines in beige color, elegant and minimalistic"
-    class="w-full max-w-[480px] h-auto mx-auto relative z-10"
-    height="360"
-    src="c08fa499-7b7b-47a4-a9c8-a1a3a0e25dab-removebg-preview.png"
-    width="480"
-  />
-</div>
-
+ <img alt="Decorative abstract purple and indigo geometric shapes with smooth curves" class="hidden lg:block absolute right-0 top-[60%] transform -translate-y-1/2 h-[100vh] max-h-[80vh] w-auto pointer-events-none select-none" height="800" src="upscalemedia-transformed.png" style="z-index:5" width="400"/>
+   </div>
   </div>
   <!-- Mobile menu -->
   <div aria-hidden="true" class="mobile-menu" id="mobile-menu" role="menu" tabindex="-1">
@@ -420,90 +452,6 @@
     </a>
    </div>
   </div>
-  
-  <!-- Professionals Section -->
-  <section class="max-w-7xl mx-auto px-6 md:px-12 py-16">
-   <h2 class="font-title text-3xl md:text-4xl text-white mb-12 text-center fade-in-up delay-100">
-    Nossa Equipe de Profissionais
-   </h2>
-   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 fade-in-up delay-200">
-    <div class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
-     <img alt="Portrait of a confident male lawyer in a dark suit with crossed arms, professional office background" class="w-40 h-40 rounded-full object-cover mb-6" height="200" src="https://storage.googleapis.com/a1aa/image/face89f8-1418-4a93-c2af-a8ec2fae6111.jpg" width="200"/>
-     <h3 class="font-title text-xl mb-1">
-      Dr. Rafael Silva
-     </h3>
-     <p class="text-sm italic text-gray-300 mb-3">
-      Especialista em Direito Civil
-     </p>
-     <p class="text-sm text-gray-400">
-      Com mais de 15 anos de experiência, Rafael é conhecido por sua abordagem
-      estratégica e ética impecável.
-     </p>
-    </div>
-    <div class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
-     <img alt="Portrait of a professional female lawyer with glasses, smiling, wearing a navy blue blazer, modern law office background" class="w-40 h-40 rounded-full object-cover mb-6" height="200" src="https://storage.googleapis.com/a1aa/image/841bed56-60c3-4f20-d449-0e2201931690.jpg" width="200"/>
-     <h3 class="font-title text-xl mb-1">
-      Dra. Mariana Costa
-     </h3>
-     <p class="text-sm italic text-gray-300 mb-3">
-      Especialista em Direito Empresarial
-     </p>
-     <p class="text-sm text-gray-400">
-      Mariana traz inovação e visão moderna para a defesa dos interesses
-      empresariais de nossos clientes.
-     </p>
-    </div>
-    <div class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
-     <img alt="Portrait of a middle-aged male lawyer with beard, wearing a gray suit and tie, confident expression, law books in background" class="w-40 h-40 rounded-full object-cover mb-6" height="200" src="https://storage.googleapis.com/a1aa/image/a8a04f86-9602-4604-08eb-b6e4f765eeb3.jpg" width="200"/>
-     <h3 class="font-title text-xl mb-1">
-      Dr. Lucas Almeida
-     </h3>
-     <p class="text-sm italic text-gray-300 mb-3">
-      Especialista em Direito Trabalhista
-     </p>
-     <p class="text-sm text-gray-400">
-      Lucas é dedicado a garantir justiça e proteção para trabalhadores e
-      empregadores.
-     </p>
-    </div>
-    <div class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
-     <img alt="Portrait of a young female lawyer with curly hair, wearing a white blouse and black blazer, bright office background" class="w-40 h-40 rounded-full object-cover mb-6" height="200" src="https://storage.googleapis.com/a1aa/image/445c6ce4-078b-46fe-a76b-21f4315ce359.jpg" width="200"/>
-     <h3 class="font-title text-xl mb-1">
-      Dra. Ana Beatriz
-     </h3>
-     <p class="text-sm italic text-gray-300 mb-3">
-      Especialista em Direito Ambiental
-     </p>
-     <p class="text-sm text-gray-400">
-      Ana Beatriz é apaixonada por sustentabilidade e defesa do meio ambiente.
-     </p>
-    </div>
-    <div class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
-     <img alt="Portrait of a senior male lawyer with glasses, gray hair, wearing a dark suit and tie, serious expression, law firm background" class="w-40 h-40 rounded-full object-cover mb-6" height="200" src="https://storage.googleapis.com/a1aa/image/2aeeb66e-16f5-45ea-5139-9f93e2a5f0eb.jpg" width="200"/>
-     <h3 class="font-title text-xl mb-1">
-      Dr. Eduardo Martins
-     </h3>
-     <p class="text-sm italic text-gray-300 mb-3">
-      Especialista em Direito Penal
-     </p>
-     <p class="text-sm text-gray-400">
-      Eduardo é um defensor incansável da justiça criminal com vasta experiência.
-     </p>
-    </div>
-    <div class="bg-[#12121b] rounded-lg p-6 flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-shadow duration-300">
-     <img alt="Portrait of a confident female lawyer with straight hair, wearing a red blouse and black blazer, modern office background" class="w-40 h-40 rounded-full object-cover mb-6" height="200" src="https://storage.googleapis.com/a1aa/image/1b1f20b7-7d62-4381-a457-1a363b33a367.jpg" width="200"/>
-     <h3 class="font-title text-xl mb-1">
-      Dra. Camila Ferreira
-     </h3>
-     <p class="text-sm italic text-gray-300 mb-3">
-      Especialista em Direito Tributário
-     </p>
-     <p class="text-sm text-gray-400">
-      Camila oferece soluções inteligentes para questões fiscais complexas.
-     </p>
-    </div>
-   </div>
-  </section>
   <script>
    const hamburger = document.getElementById("hamburger");
     const mobileMenu = document.getElementById("mobile-menu");
