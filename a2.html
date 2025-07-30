@@ -333,6 +333,279 @@
         height: auto !important;
       }
     }
+
+     /* Chat button base */
+    #chat-button {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 56px;
+      height: 56px;
+      background-color: #2d2d2d;
+      border-radius: 100%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+        background-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
+    }
+
+    #chat-button:hover,
+    #chat-button:focus {
+      outline: none;
+      background-color: #3a3a4a;
+      transform: scale(1.05);
+    }
+
+    #chat-button:focus-visible {
+      outline: 2px solid #7c3aed;
+      outline-offset: 2px;
+    }
+
+    /* Chat window container */
+    #chat-window {
+      position: fixed;
+      bottom: 90px;
+      right: 24px;
+      width: 320px;
+      max-width: 90vw;
+      height: 440px;
+      max-height: 70vh;
+      background-color: #0a0a14;
+      border-radius: 12px;
+      box-shadow: 0 12px 32px rgba(124, 58, 237, 0.35);
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(30px) scale(0.85);
+      transition:
+        opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+        transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1001;
+      font-size: 14px;
+      user-select: text;
+      will-change: transform, opacity;
+    }
+
+    #chat-window.open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Responsive chat window size on small screens */
+    @media (max-width: 480px) {
+      #chat-button {
+        width: 48px;
+        height: 48px;
+        bottom: 16px;
+        right: 16px;
+      }
+      #chat-window {
+        width: 90vw;
+        height: 70vh;
+        bottom: 72px;
+        right: 16px;
+      }
+    }
+
+    /* Chat header */
+    #chat-header {
+      background-color: #7c3aed;
+      color: white;
+      padding: 12px 16px;
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+      font-weight: 600;
+      font-family: "Montserrat", sans-serif;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    #chat-header h2 {
+      margin: 0;
+      font-size: 1.125rem;
+    }
+
+    #chat-close-button {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 1.25rem;
+      cursor: pointer;
+      padding: 0;
+      line-height: 1;
+      transition: color 0.2s ease;
+    }
+
+    #chat-close-button:hover,
+    #chat-close-button:focus {
+      color: #d8cfcf;
+      outline: none;
+    }
+
+    #chat-close-button:focus-visible {
+      outline: 2px solid #f3e8ff;
+      outline-offset: 2px;
+    }
+
+    /* Chat messages area */
+    #chat-messages {
+      flex: 1;
+      padding: 12px 16px;
+      overflow-y: auto;
+      background-color: #121224;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      scrollbar-width: thin;
+      scrollbar-color: #7c3aed #0a0a14;
+    }
+
+    #chat-messages::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    #chat-messages::-webkit-scrollbar-track {
+      background: #0a0a14;
+      border-radius: 3px;
+    }
+
+    #chat-messages::-webkit-scrollbar-thumb {
+      background-color: #7c3aed;
+      border-radius: 3px;
+    }
+
+    /* Message bubbles */
+    .message {
+      max-width: 75%;
+      padding: 8px 12px;
+      border-radius: 12px;
+      font-size: 0.875rem;
+      line-height: 1.3;
+      word-wrap: break-word;
+      user-select: text;
+      opacity: 0;
+      transform: translateY(10px);
+      animation-fill-mode: forwards;
+      animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      animation-duration: 0.35s;
+    }
+
+    .message.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .message.bot {
+      background-color: #d8d8d8;
+      color: #1a1a1a;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .message.user {
+      background-color: #5b3ea6;
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    /* FAQ container */
+    #chat-faq {
+      padding: 12px 16px;
+      background-color: #121224;
+      border-top: 1px solid #2d2d2d;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      user-select: none;
+    }
+
+    #chat-faq button {
+      background-color: #2d2d2d;
+      color: #d8cfcf;
+      border: none;
+      border-radius: 20px;
+      padding: 8px 14px;
+      font-size: 0.875rem;
+      cursor: pointer;
+      text-align: left;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      font-family: "Open Sans", sans-serif;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #chat-faq button:hover,
+    #chat-faq button:focus {
+      background-color: #7c3aed;
+      color: white;
+      outline: none;
+    }
+
+    #chat-faq button:focus-visible {
+      outline: 2px solid #f3e8ff;
+      outline-offset: 2px;
+    }
+
+    /* FAQ icon */
+    #chat-faq button i {
+      flex-shrink: 0;
+      font-size: 1.1rem;
+      color: #a78bfa;
+    }
+
+    /* Footer with human contact button */
+    #chat-footer {
+      padding: 12px 16px;
+      border-top: 1px solid #2d2d2d;
+      background-color: #121224;
+      display: flex;
+      justify-content: center;
+    }
+
+    #human-contact-button {
+      background-color: transparent;
+      border: 1.5px solid #7c3aed;
+      color: #7c3aed;
+      border-radius: 24px;
+      padding: 8px 16px;
+      font-size: 0.875rem;
+      cursor: pointer;
+      font-family: "Open Sans", sans-serif;
+      transition: background-color 0.2s ease, color 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    #human-contact-button i {
+      font-size: 1.1rem;
+    }
+
+    #human-contact-button:hover,
+    #human-contact-button:focus {
+      background-color: #7c3aed;
+      color: white;
+      outline: none;
+      text-decoration: none;
+    }
+
+    #human-contact-button:focus-visible {
+      outline: 2px solid #f3e8ff;
+      outline-offset: 2px;
+    }
   </style>
  </head>
  <body class="min-h-screen bg-[#0a0a14] text-white">
@@ -452,48 +725,258 @@
     </a>
    </div>
   </div>
+   <button
+    id="chat-button"
+    aria-label="Abrir chat de suporte"
+    aria-haspopup="dialog"
+    aria-expanded="false"
+    aria-controls="chat-window"
+    tabindex="0"
+  >
+    <i class="fas fa-comment-dots text-white text-xl" aria-hidden="true"></i>
+  </button>
+
+  <!-- Chat Window -->
+  <section
+    id="chat-window"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="chat-title"
+    aria-hidden="true"
+    tabindex="-1"
+  >
+    <header id="chat-header">
+      <h2 id="chat-title">Suporte Prometeus</h2>
+      <button
+        id="chat-close-button"
+        aria-label="Fechar chat de suporte"
+        tabindex="0"
+      >
+        <i class="fas fa-times" aria-hidden="true"></i>
+      </button>
+    </header>
+    <main id="chat-messages" aria-live="polite" aria-relevant="additions"></main>
+    <nav id="chat-faq" aria-label="Perguntas frequentes">
+      <button type="button" data-question="Como funciona a consultoria inicial?">
+        <i class="fas fa-question-circle" aria-hidden="true"></i>
+        Como funciona a consultoria inicial?
+      </button>
+      <button type="button" data-question="Quais áreas o escritório atende?">
+        <i class="fas fa-question-circle" aria-hidden="true"></i>
+        Quais áreas o escritório atende?
+      </button>
+      <button type="button" data-question="Como posso agendar uma reunião?">
+        <i class="fas fa-question-circle" aria-hidden="true"></i>
+        Como posso agendar uma reunião?
+      </button>
+      <button type="button" data-question="Onde fica o escritório?">
+        <i class="fas fa-question-circle" aria-hidden="true"></i>
+        Onde fica o escritório?
+      </button>
+      <button type="button" data-question="Vocês usam tecnologia na atuação?">
+        <i class="fas fa-question-circle" aria-hidden="true"></i>
+        Vocês usam tecnologia na atuação?
+      </button>
+    </nav>
+    <footer id="chat-footer">
+      <a
+        href="https://wa.me/5511999999999"
+        target="_blank"
+        rel="noopener noreferrer"
+        id="human-contact-button"
+        role="button"
+        tabindex="0"
+        aria-label="Falar com um atendente humano via WhatsApp"
+      >
+        <i class="fas fa-headset" aria-hidden="true"></i>
+        Falar com um atendente humano
+      </a>
+    </footer>
+  </section>
+
   <script>
-   const hamburger = document.getElementById("hamburger");
-    const mobileMenu = document.getElementById("mobile-menu");
+    (() => {
+      const chatButton = document.getElementById("chat-button");
+      const chatWindow = document.getElementById("chat-window");
+      const chatCloseButton = document.getElementById("chat-close-button");
+      const chatMessages = document.getElementById("chat-messages");
+      const faqButtons = document.querySelectorAll("#chat-faq button");
 
-    function toggleMenu() {
-      const isOpen = hamburger.classList.toggle("open");
-      mobileMenu.classList.toggle("open");
-      hamburger.setAttribute("aria-expanded", isOpen);
-      if (isOpen) {
-        mobileMenu.setAttribute("aria-hidden", "false");
-        mobileMenu.querySelectorAll("a").forEach((a) => (a.tabIndex = 0));
-        // Trap focus inside mobile menu
-        mobileMenu.focus();
-      } else {
-        mobileMenu.setAttribute("aria-hidden", "true");
-        mobileMenu.querySelectorAll("a").forEach((a) => (a.tabIndex = -1));
-        hamburger.focus();
+      // Predefined Q&A
+      const qaMap = {
+        "Como funciona a consultoria inicial?":
+          "Nossa consultoria inicial pode ser feita por vídeo, telefone ou presencialmente. Agende pelo formulário ou WhatsApp.",
+        "Quais áreas o escritório atende?":
+          "Atendemos diversas áreas do direito, incluindo civil, empresarial, trabalhista e tecnologia.",
+        "Como posso agendar uma reunião?":
+          "Você pode agendar uma reunião pelo nosso formulário online ou entrando em contato via WhatsApp.",
+        "Onde fica o escritório?":
+          "Nosso escritório está localizado no centro da cidade, com fácil acesso e estacionamento.",
+        "Vocês usam tecnologia na atuação?":
+          "Sim, utilizamos inteligência artificial, automação e blockchain para garantir eficiência e segurança.",
+      };
+
+      // Accessibility: trap focus inside chat window when open
+      let lastFocusedElement = null;
+
+      function trapFocus(element) {
+        const focusableElementsString =
+          'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, [tabindex="0"], [contenteditable]';
+        const focusableElements = element.querySelectorAll(focusableElementsString);
+        const firstFocusable = focusableElements[0];
+        const lastFocusable = focusableElements[focusableElements.length - 1];
+
+        function handleTrap(e) {
+          if (e.key === "Tab") {
+            if (e.shiftKey) {
+              if (document.activeElement === firstFocusable) {
+                e.preventDefault();
+                lastFocusable.focus();
+              }
+            } else {
+              if (document.activeElement === lastFocusable) {
+                e.preventDefault();
+                firstFocusable.focus();
+              }
+            }
+          }
+          if (e.key === "Escape") {
+            closeChat();
+          }
+        }
+
+        element.addEventListener("keydown", handleTrap);
+        return () => element.removeEventListener("keydown", handleTrap);
       }
-    }
 
-    hamburger.addEventListener("click", toggleMenu);
-    hamburger.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
-        e.preventDefault();
-        toggleMenu();
+      let removeTrapFocusListener = null;
+
+      function openChat() {
+        lastFocusedElement = document.activeElement;
+        chatWindow.classList.add("open");
+        chatWindow.setAttribute("aria-hidden", "false");
+        chatButton.setAttribute("aria-expanded", "true");
+        chatWindow.focus();
+        if (removeTrapFocusListener) removeTrapFocusListener();
+        removeTrapFocusListener = trapFocus(chatWindow);
       }
-    });
 
-    // Close menu on link click
-    mobileMenu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        hamburger.classList.remove("open");
-        mobileMenu.classList.remove("open");
-        hamburger.setAttribute("aria-expanded", "false");
-        mobileMenu.setAttribute("aria-hidden", "true");
-        mobileMenu.querySelectorAll("a").forEach((a) => (a.tabIndex = -1));
-        hamburger.focus();
+      function closeChat() {
+        chatWindow.classList.remove("open");
+        chatWindow.setAttribute("aria-hidden", "true");
+        chatButton.setAttribute("aria-expanded", "false");
+        chatMessages.innerHTML = "";
+        if (removeTrapFocusListener) removeTrapFocusListener();
+        if (lastFocusedElement) lastFocusedElement.focus();
+      }
+
+      chatButton.addEventListener("click", () => {
+        if (chatWindow.classList.contains("open")) {
+          closeChat();
+        } else {
+          openChat();
+        }
       });
-    });
 
-    // Initialize mobile menu links tabindex to -1 (hidden)
-    mobileMenu.querySelectorAll("a").forEach((a) => (a.tabIndex = -1));
+      chatButton.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+          e.preventDefault();
+          if (chatWindow.classList.contains("open")) {
+            closeChat();
+          } else {
+            openChat();
+          }
+        }
+      });
+
+      chatCloseButton.addEventListener("click", closeChat);
+      chatCloseButton.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+          e.preventDefault();
+          closeChat();
+        }
+      });
+
+      // Animate message appearance
+      function animateMessage(msgElem) {
+        requestAnimationFrame(() => {
+          msgElem.classList.add("show");
+        });
+      }
+
+      // Simulate typing delay and add bot message
+      function addBotMessage(text) {
+        const typingBubble = document.createElement("div");
+        typingBubble.className = "message bot";
+        typingBubble.textContent = "Digitando...";
+        chatMessages.appendChild(typingBubble);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        setTimeout(() => {
+          typingBubble.textContent = text;
+          animateMessage(typingBubble);
+          chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 800);
+      }
+
+      // Add user message
+      function addUserMessage(text) {
+        const userBubble = document.createElement("div");
+        userBubble.className = "message user";
+        userBubble.textContent = text;
+        chatMessages.appendChild(userBubble);
+        animateMessage(userBubble);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+
+      faqButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const question = btn.getAttribute("data-question");
+          const answer = qaMap[question];
+          if (!answer) return;
+
+          addUserMessage(question);
+          addBotMessage(answer);
+        });
+
+        btn.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+            e.preventDefault();
+            btn.click();
+          }
+        });
+      });
+
+      // Close chat if clicking outside chat window and chat is open
+      document.addEventListener("click", (e) => {
+        if (
+          chatWindow.classList.contains("open") &&
+          !chatWindow.contains(e.target) &&
+          e.target !== chatButton
+        ) {
+          closeChat();
+        }
+      });
+
+      // Prevent scroll behind chat when open on mobile
+      function preventBodyScroll(prevent) {
+        if (prevent) {
+          document.body.style.overflow = "hidden";
+        } else {
+          document.body.style.overflow = "";
+        }
+      }
+
+      const observer = new MutationObserver(() => {
+        if (chatWindow.classList.contains("open")) {
+          preventBodyScroll(true);
+        } else {
+          preventBodyScroll(false);
+        }
+      });
+
+      observer.observe(chatWindow, { attributes: true, attributeFilter: ["class"] });
+    })();
   </script>
- </body>
+</body>
 </html>
