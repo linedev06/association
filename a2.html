@@ -335,7 +335,7 @@
     }
 
      /* Chat button base */
-    #chat-button {
+ #chat-button {
       position: fixed;
       bottom: 24px;
       right: 24px;
@@ -466,6 +466,7 @@
       gap: 8px;
       scrollbar-width: thin;
       scrollbar-color: #7c3aed #0a0a14;
+      position: relative;
     }
 
     #chat-messages::-webkit-scrollbar {
@@ -521,29 +522,37 @@
 
     /* FAQ container */
     #chat-faq {
-      padding: 12px 16px;
-      background-color: #121224;
-      border-top: 1px solid #2d2d2d;
+      background-color: #2d2d2d;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
       display: flex;
       flex-direction: column;
       gap: 8px;
+      max-height: 180px;
+      overflow-y: auto;
       user-select: none;
+      padding: 8px 12px;
+      margin-top: 8px;
+      font-family: "Open Sans", sans-serif;
+      font-size: 0.9rem;
+      color: #d8cfcf;
+      outline: none;
     }
 
     #chat-faq button {
-      background-color: #2d2d2d;
+      background-color: transparent;
       color: #d8cfcf;
       border: none;
-      border-radius: 20px;
-      padding: 8px 14px;
+      border-radius: 8px;
+      padding: 8px 12px;
       font-size: 0.875rem;
       cursor: pointer;
       text-align: left;
       transition: background-color 0.2s ease, color 0.2s ease;
-      font-family: "Open Sans", sans-serif;
       display: flex;
       align-items: center;
       gap: 8px;
+      width: 100%;
     }
 
     #chat-faq button:hover,
@@ -603,6 +612,38 @@
     }
 
     #human-contact-button:focus-visible {
+      outline: 2px solid #f3e8ff;
+      outline-offset: 2px;
+    }
+
+    /* Button to toggle FAQ visibility inside chat */
+    #toggle-faq-button {
+      position: absolute;
+      bottom: 72px;
+      right: 16px;
+      background-color: #7c3aed;
+      border: none;
+      border-radius: 24px;
+      padding: 10px 16px;
+      color: white;
+      font-family: "Open Sans", sans-serif;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.5);
+      z-index: 1002;
+      transition: background-color 0.2s ease;
+    }
+
+    #toggle-faq-button:hover,
+    #toggle-faq-button:focus {
+      background-color: #5a27b8;
+      outline: none;
+    }
+
+    #toggle-faq-button:focus-visible {
       outline: 2px solid #f3e8ff;
       outline-offset: 2px;
     }
@@ -736,71 +777,64 @@
     <i class="fas fa-comment-dots text-white text-xl" aria-hidden="true"></i>
   </button>
 
-  <!-- Chat Window -->
-  <section
-    id="chat-window"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="chat-title"
-    aria-hidden="true"
-    tabindex="-1"
-  >
-    <header id="chat-header">
-      <h2 id="chat-title">Suporte Prometeus</h2>
-      <button
-        id="chat-close-button"
-        aria-label="Fechar chat de suporte"
-        tabindex="0"
-      >
-        <i class="fas fa-times" aria-hidden="true"></i>
-      </button>
-    </header>
-    <main id="chat-messages" aria-live="polite" aria-relevant="additions"></main>
-    <nav id="chat-faq" aria-label="Perguntas frequentes">
-      <button type="button" data-question="Como funciona a consultoria inicial?">
-        <i class="fas fa-question-circle" aria-hidden="true"></i>
-        Como funciona a consultoria inicial?
-      </button>
-      <button type="button" data-question="Quais áreas o escritório atende?">
-        <i class="fas fa-question-circle" aria-hidden="true"></i>
-        Quais áreas o escritório atende?
-      </button>
-      <button type="button" data-question="Como posso agendar uma reunião?">
-        <i class="fas fa-question-circle" aria-hidden="true"></i>
-        Como posso agendar uma reunião?
-      </button>
-      <button type="button" data-question="Onde fica o escritório?">
-        <i class="fas fa-question-circle" aria-hidden="true"></i>
-        Onde fica o escritório?
-      </button>
-      <button type="button" data-question="Vocês usam tecnologia na atuação?">
-        <i class="fas fa-question-circle" aria-hidden="true"></i>
-        Vocês usam tecnologia na atuação?
-      </button>
-    </nav>
-    <footer id="chat-footer">
-      <a
-        href="https://wa.me/5511999999999"
-        target="_blank"
-        rel="noopener noreferrer"
-        id="human-contact-button"
-        role="button"
-        tabindex="0"
-        aria-label="Falar com um atendente humano via WhatsApp"
-      >
-        <i class="fas fa-headset" aria-hidden="true"></i>
-        Falar com um atendente humano
-      </a>
-    </footer>
+ <section aria-hidden="true" aria-labelledby="chat-title" aria-modal="true" id="chat-window" role="dialog" tabindex="-1">
+   <header id="chat-header">
+    <h2 id="chat-title">
+     Suporte Prometeus
+    </h2>
+    <button aria-label="Fechar chat de suporte" id="chat-close-button" tabindex="0">
+     <i aria-hidden="true" class="fas fa-times">
+     </i>
+    </button>
+   </header>
+   <main aria-live="polite" aria-relevant="additions" id="chat-messages">
+    <!-- Messages will appear here -->
+   </main>
+   <nav aria-label="Perguntas frequentes" id="chat-faq" role="listbox" tabindex="-1">
+    <button data-question="Como funciona a consultoria inicial?" role="option" type="button" tabindex="0">
+     <i aria-hidden="true" class="fas fa-question-circle"></i>
+     Como funciona a consultoria inicial?
+    </button>
+    <button data-question="Quais áreas o escritório atende?" role="option" type="button" tabindex="0">
+     <i aria-hidden="true" class="fas fa-question-circle"></i>
+     Quais áreas o escritório atende?
+    </button>
+    <button data-question="Como posso agendar uma reunião?" role="option" type="button" tabindex="0">
+     <i aria-hidden="true" class="fas fa-question-circle"></i>
+     Como posso agendar uma reunião?
+    </button>
+    <button data-question="Onde fica o escritório?" role="option" type="button" tabindex="0">
+     <i aria-hidden="true" class="fas fa-question-circle"></i>
+     Onde fica o escritório?
+    </button>
+    <button data-question="Vocês usam tecnologia na atuação?" role="option" type="button" tabindex="0">
+     <i aria-hidden="true" class="fas fa-question-circle"></i>
+     Vocês usam tecnologia na atuação?
+    </button>
+   </nav>
+   <button aria-label="Mostrar ou ocultar perguntas frequentes" id="toggle-faq-button" tabindex="0" aria-expanded="true" aria-controls="chat-faq">
+    <i class="fas fa-list" aria-hidden="true"></i>
+    Perguntas frequentes
+   </button>
+   <footer id="chat-footer">
+    <a aria-label="Falar com um atendente humano via WhatsApp" href="https://wa.me/5511999999999" id="human-contact-button" rel="noopener noreferrer" role="button" tabindex="0" target="_blank">
+     <i aria-hidden="true" class="fas fa-headset">
+     </i>
+     Falar com um atendente humano
+    </a>
+   </footer>
   </section>
-
   <script>
-    (() => {
+   (() => {
       const chatButton = document.getElementById("chat-button");
       const chatWindow = document.getElementById("chat-window");
       const chatCloseButton = document.getElementById("chat-close-button");
       const chatMessages = document.getElementById("chat-messages");
       const faqButtons = document.querySelectorAll("#chat-faq button");
+      const chatFaq = document.getElementById("chat-faq");
+      const toggleFaqButton = document.getElementById("toggle-faq-button");
+      const hamburger = document.getElementById("hamburger");
+      const mobileMenu = document.getElementById("mobile-menu");
 
       // Predefined Q&A
       const qaMap = {
@@ -859,6 +893,7 @@
         chatWindow.focus();
         if (removeTrapFocusListener) removeTrapFocusListener();
         removeTrapFocusListener = trapFocus(chatWindow);
+        resetChat();
       }
 
       function closeChat() {
@@ -866,8 +901,39 @@
         chatWindow.setAttribute("aria-hidden", "true");
         chatButton.setAttribute("aria-expanded", "false");
         chatMessages.innerHTML = "";
+        showFaq();
         if (removeTrapFocusListener) removeTrapFocusListener();
         if (lastFocusedElement) lastFocusedElement.focus();
+      }
+
+      function resetChat() {
+        chatMessages.innerHTML = "";
+        showFaq();
+      }
+
+      function showFaq() {
+        chatFaq.style.display = "flex";
+        toggleFaqButton.setAttribute("aria-expanded", "true");
+        toggleFaqButton.textContent = "";
+        toggleFaqButton.appendChild(createToggleButtonContent(true));
+      }
+
+      function hideFaq() {
+        chatFaq.style.display = "none";
+        toggleFaqButton.setAttribute("aria-expanded", "false");
+        toggleFaqButton.textContent = "";
+        toggleFaqButton.appendChild(createToggleButtonContent(false));
+      }
+
+      function createToggleButtonContent(isOpen) {
+        const icon = document.createElement("i");
+        icon.className = "fas fa-list";
+        icon.setAttribute("aria-hidden", "true");
+        const text = document.createTextNode(" Perguntas frequentes");
+        const fragment = document.createDocumentFragment();
+        fragment.appendChild(icon);
+        fragment.appendChild(text);
+        return fragment;
       }
 
       chatButton.addEventListener("click", () => {
@@ -929,12 +995,38 @@
         chatMessages.scrollTop = chatMessages.scrollHeight;
       }
 
+      // Toggle FAQ visibility
+      toggleFaqButton.addEventListener("click", () => {
+        if (chatFaq.style.display === "flex") {
+          hideFaq();
+        } else {
+          showFaq();
+        }
+      });
+
+      toggleFaqButton.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+          e.preventDefault();
+          if (chatFaq.style.display === "flex") {
+            hideFaq();
+          } else {
+            showFaq();
+          }
+        }
+      });
+
+      // Handle FAQ question selection
       faqButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
           const question = btn.getAttribute("data-question");
           const answer = qaMap[question];
           if (!answer) return;
 
+          // Clear messages and hide FAQ menu
+          chatMessages.innerHTML = "";
+          hideFaq();
+
+          // Add user question and bot answer
           addUserMessage(question);
           addBotMessage(answer);
         });
@@ -976,7 +1068,47 @@
       });
 
       observer.observe(chatWindow, { attributes: true, attributeFilter: ["class"] });
+
+      // Hamburger menu toggle
+      function toggleMobileMenu() {
+        const expanded = hamburger.getAttribute("aria-expanded") === "true";
+        if (expanded) {
+          hamburger.setAttribute("aria-expanded", "false");
+          mobileMenu.classList.remove("open");
+        } else {
+          hamburger.setAttribute("aria-expanded", "true");
+          mobileMenu.classList.add("open");
+        }
+      }
+
+      hamburger.addEventListener("click", toggleMobileMenu);
+      hamburger.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") {
+          e.preventDefault();
+          toggleMobileMenu();
+        }
+      });
+
+      // Close mobile menu when clicking outside or on link
+      document.addEventListener("click", (e) => {
+        if (
+          mobileMenu.classList.contains("open") &&
+          !mobileMenu.contains(e.target) &&
+          e.target !== hamburger
+        ) {
+          hamburger.setAttribute("aria-expanded", "false");
+          mobileMenu.classList.remove("open");
+        }
+      });
+
+      // Close mobile menu on link click
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.setAttribute("aria-expanded", "false");
+          mobileMenu.classList.remove("open");
+        });
+      });
     })();
   </script>
-</body>
+ </body>
 </html>
